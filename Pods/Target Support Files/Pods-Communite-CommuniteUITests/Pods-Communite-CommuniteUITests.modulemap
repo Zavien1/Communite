@@ -1,0 +1,6 @@
+framework module Pods_Communite_CommuniteUITests {
+  umbrella header "Pods-Communite-CommuniteUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
