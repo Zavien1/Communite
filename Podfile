@@ -6,6 +6,11 @@ target 'Communite' do
   use_frameworks!
 
   # Pods for Communite
+  pod 'Parse'
+  pod 'AFNetworking'
+  pod 'DateTools'
+  pod 'GoogleMaps', '5.1.0'
+  pod 'FBSDKLoginKit'
 
   target 'CommuniteTests' do
     inherit! :search_paths
