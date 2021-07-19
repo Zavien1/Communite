@@ -10,8 +10,9 @@ target 'Communite' do
   pod 'AFNetworking'
   pod 'DateTools'
   pod 'GoogleMaps', '5.1.0'
+  pod 'GooglePlaces'
   pod 'FBSDKLoginKit'
-
+  
   target 'CommuniteTests' do
     inherit! :search_paths
     # Pods for testing

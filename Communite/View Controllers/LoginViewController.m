@@ -5,11 +5,15 @@
 //  Created by Zavien Sibilia on 7/12/21.
 //
 
+#import "AppDelegate.h"
+#import "HomeViewController.h"
 #import "LoginViewController.h"
+#import "Parse/Parse.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface LoginViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
@@ -20,27 +24,64 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-    loginButton.permissions = @[@"public_profile", @"email", @"user_friends", @"user_location"];
-    // Optional: Place the button in the center of your view.
-    loginButton.center = self.view.center;
-    [self.view addSubview:loginButton];
-    
-    if ([FBSDKAccessToken currentAccessToken]) {
-     
+    loginButton.delegate = self;
+}
+
+- (void)loginButton:(FBSDKLoginButton *)loginButton
+didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
+              error:(NSError *)error {
+    if (error == nil) {
+        if ([FBSDKAccessToken currentAccessToken]) {
+            [self performSegueWithIdentifier:@"loginSegue" sender:self];
+        }
+    } else {
+        NSLog(@"%@", error.localizedDescription);
     }
 }
-
 - (IBAction)didTapLogin:(id)sender {
-    
+    [self loginUser];
 }
 
-- (IBAction)didTapSignup:(id)sender {
-    
+- (IBAction)didTapSIgnup:(id)sender {
+    [self registerUser];
 }
 
-- (IBAction)didTapLoginWithFacebook:(id)sender {
+- (void)registerUser {
+    // initialize a user object
+    PFUser *newUser = [PFUser user];
     
+    // set user properties
+    newUser.username = self.userNameTextField.text;
+    newUser.password = self.passwordTextField.text;
+    
+    // call sign up function on the object
+    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        if (error != nil) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            NSLog(@"User registered successfully");
+            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+        }
+    }];
 }
+
+- (void)loginUser {
+    NSString *username = self.userNameTextField.text;
+    NSString *password = self.passwordTextField.text;
+    
+    [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
+        if (error != nil) {
+            NSLog(@"User log in failed: %@", error.localizedDescription);
+        } else {
+            NSLog(@"User logged in successfully");
+            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+            
+            // display view controller that needs to shown after successful login
+        }
+    }];
+}
+
+
 
 /*
 #pragma mark - Navigation

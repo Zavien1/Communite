@@ -6,10 +6,10 @@
 //
 
 #import "AppDelegate.h"
+#import "Parse/Parse.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+@import GooglePlaces;
 @import GoogleMaps;
-
-
 
 
 @interface AppDelegate ()
@@ -22,8 +22,27 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [GMSServices provideAPIKey:@"AIzaSyDmNafYiE72NM2SjNz0gtl5kZ2wgEcHbSg"];
+    [GMSPlacesClient provideAPIKey: @"AIzaSyDmNafYiE72NM2SjNz0gtl5kZ2wgEcHbSg"];
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    if([FBSDKAccessToken currentAccessToken]){
+        UINavigationController *tabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
+        self.window.rootViewController = tabBarController;
+    } else {
+        UINavigationController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        self.window.rootViewController = loginViewController;
+    }
+    
+    ParseClientConfiguration *config = [ParseClientConfiguration  configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+
+        configuration.applicationId = @"vDsypp02lk14YUpZJoUYgktFoJLt6s1sYWJnhVfm";
+        configuration.clientKey = @"ZZWUoYHzCbXbicAkG5gVpcDypECvJqPRT3CKjVlI"; // <- UPDATE
+        configuration.server = @"https://parseapi.back4app.com";
+    }];
+
+    [Parse initializeWithConfiguration:config];
     
     return YES;
 }

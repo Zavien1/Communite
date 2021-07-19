@@ -12,7 +12,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,7 +41,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
-                                    <action selector="didTapLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6uB-Jn-8Di"/>
+                                    <action selector="didTapLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ek3-3c-Klk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yf-R4-5ng">
@@ -49,28 +49,27 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
+                                    <action selector="didTapSIgnup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sRU-Mj-Vhs"/>
                                     <action selector="didTapSignup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pAF-ld-3CL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9st-aG-t3T">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9st-aG-t3T" customClass="FBSDKLoginButton">
                                 <rect key="frame" x="67" y="566" width="281" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <state key="normal" title="Login With Facebook">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
-                                <connections>
-                                    <action selector="didTapLoginWithFacebook:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FEu-io-RpJ"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="loginWithFacebook" destination="9st-aG-t3T" id="Ep1-Wx-LVh"/>
                         <outlet property="passwordTextField" destination="VKg-JO-LDr" id="3Ib-i6-KvZ"/>
                         <outlet property="userNameTextField" destination="apX-jM-aoT" id="gBF-XD-ckv"/>
-                        <segue destination="ppL-xh-oxw" kind="presentation" id="ThN-0m-dqs"/>
+                        <segue destination="ppL-xh-oxw" kind="presentation" identifier="loginSegue" id="ThN-0m-dqs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -85,15 +84,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jdy-H6-95c">
-                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MJA-u9-Fx5">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="i5P-fK-qTV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="0vB-S0-zxu"/>
+                    <navigationItem key="navigationItem" id="0vB-S0-zxu">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="7EN-aE-feW">
+                            <connections>
+                                <action selector="didTapLogout:" destination="Opw-Nj-G2F" id="cH4-gk-gJJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="MJA-u9-Fx5" id="QIf-S0-Mgh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxQ-W9-xEQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -112,13 +120,54 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="158" id="eAW-YQ-wHG">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="158"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="244" id="eAW-YQ-wHG" customClass="EventCell">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="244"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eAW-YQ-wHG" id="SQv-om-6Sw">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="244"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ekn-x5-GPe">
+                                                    <rect key="frame" x="20" y="22" width="63" height="29"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qX4-hN-1AB">
+                                                    <rect key="frame" x="20" y="138" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAD-U8-Ovq">
+                                                    <rect key="frame" x="20" y="204" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SgL-DG-tF2">
+                                                    <rect key="frame" x="240" y="0.0" width="174" height="244"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </mapView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxG-jS-VID">
+                                                    <rect key="frame" x="20" y="76" width="43" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="addressLabel" destination="qX4-hN-1AB" id="4U8-ys-Gk7"/>
+                                            <outlet property="eventTimeLabel" destination="AAD-U8-Ovq" id="UYP-aO-Tr4"/>
+                                            <outlet property="eventTitleLabel" destination="Ekn-x5-GPe" id="Fa3-e5-HzP"/>
+                                            <outlet property="hostNameLabel" destination="bxG-jS-VID" id="RWe-rB-22k"/>
+                                            <outlet property="mapView" destination="SgL-DG-tF2" id="IHt-sf-cjX"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -167,7 +216,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Bhm-Og-enK">
             <objects>
-                <tabBarController modalPresentationStyle="fullScreen" id="ppL-xh-oxw" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ppL-xh-oxw" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9KO-NV-ZXS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -184,11 +233,11 @@
             </objects>
             <point key="canvasLocation" x="19" y="887"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="Kog-re-KKR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QQG-W1-Bc9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="uM2-VI-GBc"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="uM2-VI-GBc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zmY-je-xGB">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -203,11 +252,11 @@
             </objects>
             <point key="canvasLocation" x="-1846" y="1644"/>
         </scene>
-        <!--Item-->
+        <!--Events-->
         <scene sceneID="sQB-4O-7i3">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZDu-hj-5Zd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="QVL-77-VIX"/>
+                    <tabBarItem key="tabBarItem" title="Events" image="calendar" catalog="system" id="QVL-77-VIX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YSv-UL-fMf">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -222,11 +271,11 @@
             </objects>
             <point key="canvasLocation" x="-500" y="1673"/>
         </scene>
-        <!--Item-->
+        <!--Profile-->
         <scene sceneID="5s1-k1-PBQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="D8P-cT-3Rl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="MOb-1d-djA"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" id="MOb-1d-djA"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ckS-5J-27L">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -241,11 +290,11 @@
             </objects>
             <point key="canvasLocation" x="771" y="1673"/>
         </scene>
-        <!--Item-->
+        <!--Settings-->
         <scene sceneID="1YH-9l-A19">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="E77-Fv-Nx0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="CNT-hn-r1x"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="CNT-hn-r1x"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ryl-cn-dLC">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -262,6 +311,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="house" catalog="system" width="128" height="106"/>
+        <image name="person" catalog="system" width="128" height="117"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
