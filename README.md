@@ -120,7 +120,7 @@ Communite gives users a geomap interface to explore what their social circles ar
 #### Week 2
 * Setup Database 
 * Implement event creation
-* Display events to users from google maps interface
+* Display events to users from apple mapkit interface
 
 ### Week 3
 * set user data in the profile screen
