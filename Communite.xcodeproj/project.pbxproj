@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		131B488C26A762C600AA09AA /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 131B488B26A762C600AA09AA /* User.m */; };
+		131B488F26A762F500AA09AA /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 131B488E26A762F500AA09AA /* Event.m */; };
 		1366F35C26A0D1FB00D33CDE /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1366F35B26A0D1FB00D33CDE /* EventCell.m */; };
-		1366F35F26A5D2A200D33CDE /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 1366F35E26A5D2A200D33CDE /* Event.m */; };
-		1366F36226A5D2AB00D33CDE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1366F36126A5D2AB00D33CDE /* User.m */; };
+		136A503026A6396800672C51 /* HostEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136A502F26A6396800672C51 /* HostEventViewController.m */; };
+		136A503326A63BF600672C51 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136A503226A63BF600672C51 /* DetailsViewController.m */; };
 		13B94FD8269CEC9E00E917E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B94FD7269CEC9E00E917E1 /* AppDelegate.m */; };
 		13B94FDB269CEC9E00E917E1 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B94FDA269CEC9E00E917E1 /* SceneDelegate.m */; };
 		13B94FE1269CEC9E00E917E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13B94FDF269CEC9E00E917E1 /* Main.storyboard */; };
@@ -48,12 +50,16 @@
 
 /* Begin PBXFileReference section */
 		00EC616986132495E70E5716 /* Pods_Communite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Communite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		131B488A26A762C600AA09AA /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		131B488B26A762C600AA09AA /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		131B488D26A762F500AA09AA /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		131B488E26A762F500AA09AA /* Event.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		1366F35A26A0D1FB00D33CDE /* EventCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventCell.h; sourceTree = "<group>"; };
 		1366F35B26A0D1FB00D33CDE /* EventCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventCell.m; sourceTree = "<group>"; };
-		1366F35D26A5D2A200D33CDE /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
-		1366F35E26A5D2A200D33CDE /* Event.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
-		1366F36026A5D2AB00D33CDE /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		1366F36126A5D2AB00D33CDE /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		136A502E26A6396800672C51 /* HostEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HostEventViewController.h; sourceTree = "<group>"; };
+		136A502F26A6396800672C51 /* HostEventViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HostEventViewController.m; sourceTree = "<group>"; };
+		136A503126A63BF600672C51 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		136A503226A63BF600672C51 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		13B94FD3269CEC9D00E917E1 /* Communite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Communite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B94FD6269CEC9E00E917E1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		13B94FD7269CEC9E00E917E1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -122,10 +128,10 @@
 		1366F35926A0D08600D33CDE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1366F35D26A5D2A200D33CDE /* Event.h */,
-				1366F35E26A5D2A200D33CDE /* Event.m */,
-				1366F36026A5D2AB00D33CDE /* User.h */,
-				1366F36126A5D2AB00D33CDE /* User.m */,
+				131B488A26A762C600AA09AA /* User.h */,
+				131B488B26A762C600AA09AA /* User.m */,
+				131B488D26A762F500AA09AA /* Event.h */,
+				131B488E26A762F500AA09AA /* Event.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -203,6 +209,10 @@
 				13B95018269DF50400E917E1 /* ProfileViewController.m */,
 				13B9501A269DF59800E917E1 /* SettingsViewController.h */,
 				13B9501B269DF59800E917E1 /* SettingsViewController.m */,
+				136A502E26A6396800672C51 /* HostEventViewController.h */,
+				136A502F26A6396800672C51 /* HostEventViewController.m */,
+				136A503126A63BF600672C51 /* DetailsViewController.h */,
+				136A503226A63BF600672C51 /* DetailsViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -515,13 +525,15 @@
 			files = (
 				13B9500F269CF4D200E917E1 /* LoginViewController.m in Sources */,
 				13B95016269DF2D800E917E1 /* EventsViewController.m in Sources */,
-				1366F35F26A5D2A200D33CDE /* Event.m in Sources */,
+				136A503326A63BF600672C51 /* DetailsViewController.m in Sources */,
+				131B488F26A762F500AA09AA /* Event.m in Sources */,
 				13B94FD8269CEC9E00E917E1 /* AppDelegate.m in Sources */,
 				13B9501C269DF59800E917E1 /* SettingsViewController.m in Sources */,
 				13B94FE9269CEC9E00E917E1 /* main.m in Sources */,
-				1366F36226A5D2AB00D33CDE /* User.m in Sources */,
 				13B95019269DF50400E917E1 /* ProfileViewController.m in Sources */,
 				13B95013269CF73D00E917E1 /* HomeViewController.m in Sources */,
+				131B488C26A762C600AA09AA /* User.m in Sources */,
+				136A503026A6396800672C51 /* HostEventViewController.m in Sources */,
 				1366F35C26A0D1FB00D33CDE /* EventCell.m in Sources */,
 				13B94FDB269CEC9E00E917E1 /* SceneDelegate.m in Sources */,
 			);

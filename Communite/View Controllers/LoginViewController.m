@@ -42,9 +42,10 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
     [self loginUser];
 }
 
-- (IBAction)didTapSIgnup:(id)sender {
+- (IBAction)didTapSignup:(id)sender {
     [self registerUser];
 }
+
 
 - (void)registerUser {
     // initialize a user object
@@ -60,7 +61,7 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
             NSLog(@"Error: %@", error.localizedDescription);
         } else {
             NSLog(@"User registered successfully");
-            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+            [self performSegueWithIdentifier:@"loginSegue" sender:self];
         }
     }];
 }
@@ -74,7 +75,7 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
             NSLog(@"User log in failed: %@", error.localizedDescription);
         } else {
             NSLog(@"User logged in successfully");
-            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+            [self performSegueWithIdentifier:@"loginSegue" sender:self];
             
             // display view controller that needs to shown after successful login
         }
