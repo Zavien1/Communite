@@ -106,7 +106,27 @@ Communite gives users a geomap interface to explore what their social circles ar
    | createdAt     | DateTime | date when post is created (default field) |
    | updatedAt     | DateTime | date when post is last updated (default field) |
 
-### Networking
+ ### Networking
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
+
+### Milestones
+
+#### Week 1
+* Set up project skeleton
+* Set up API's 
+
+#### Week 2
+* Setup Database 
+* Implement event creation
+* Display events to users from google maps interface
+
+### Week 3
+* set user data in the profile screen
+* implement settings screen
+* implement recommendation algorithm 
+
+### Week 4
+* Clean UI 
+* Implement stretch stories 
