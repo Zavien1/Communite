@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		131B488C26A762C600AA09AA /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 131B488B26A762C600AA09AA /* User.m */; };
 		131B488F26A762F500AA09AA /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 131B488E26A762F500AA09AA /* Event.m */; };
+		131B489526AA154E00AA09AA /* SearchVenueTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 131B489426AA154E00AA09AA /* SearchVenueTextField.m */; };
 		1366F35C26A0D1FB00D33CDE /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1366F35B26A0D1FB00D33CDE /* EventCell.m */; };
 		136A503026A6396800672C51 /* HostEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136A502F26A6396800672C51 /* HostEventViewController.m */; };
 		136A503326A63BF600672C51 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136A503226A63BF600672C51 /* DetailsViewController.m */; };
@@ -54,6 +55,8 @@
 		131B488B26A762C600AA09AA /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		131B488D26A762F500AA09AA /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		131B488E26A762F500AA09AA /* Event.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		131B489326AA154E00AA09AA /* SearchVenueTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchVenueTextField.h; sourceTree = "<group>"; };
+		131B489426AA154E00AA09AA /* SearchVenueTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchVenueTextField.m; sourceTree = "<group>"; };
 		1366F35A26A0D1FB00D33CDE /* EventCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventCell.h; sourceTree = "<group>"; };
 		1366F35B26A0D1FB00D33CDE /* EventCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventCell.m; sourceTree = "<group>"; };
 		136A502E26A6396800672C51 /* HostEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HostEventViewController.h; sourceTree = "<group>"; };
@@ -222,6 +225,8 @@
 			children = (
 				1366F35A26A0D1FB00D33CDE /* EventCell.h */,
 				1366F35B26A0D1FB00D33CDE /* EventCell.m */,
+				131B489326AA154E00AA09AA /* SearchVenueTextField.h */,
+				131B489426AA154E00AA09AA /* SearchVenueTextField.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -524,6 +529,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B9500F269CF4D200E917E1 /* LoginViewController.m in Sources */,
+				131B489526AA154E00AA09AA /* SearchVenueTextField.m in Sources */,
 				13B95016269DF2D800E917E1 /* EventsViewController.m in Sources */,
 				136A503326A63BF600672C51 /* DetailsViewController.m in Sources */,
 				131B488F26A762F500AA09AA /* Event.m in Sources */,

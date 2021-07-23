@@ -33,11 +33,19 @@
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0){
         [self.locationManager requestWhenInUseAuthorization];
+    }
 
     [self.locationManager startUpdatingLocation];
     [self centerViewOnUserLocation];
+    
+    CLLocationCoordinate2D coordinates = CLLocationCoordinate2DMake(37.785500, -122.421800);
+    
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    [annotation setCoordinate:coordinates];
+    [annotation setTitle:@"Tommy's Joynt Party"]; //You can set the subtitle too
+    [self.mapView addAnnotation:annotation];
 }
 
 - (void)centerViewOnUserLocation{

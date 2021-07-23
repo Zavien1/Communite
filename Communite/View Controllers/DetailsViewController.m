@@ -24,7 +24,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    PFUser *user = self.event[@"creator"];
+    self.hostedByLabel.text = user.username;
+    self.eventDescriptionLabel.text = self.event[@"eventDescription"];
+    self.eventTitleLabel.text = self.event[@"eventTitle"];
+    self.totalAttendingLabel.text = self.event[@"rsvpCount"];
+//    [self.mapView set]
+    
 }
 
 /*

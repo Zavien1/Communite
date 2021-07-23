@@ -5,6 +5,7 @@
 //  Created by Zavien Sibilia on 7/15/21.
 //
 
+#import "Event.h"
 #import "MapKit/MapKit.h"
 #import <UIKit/UIKit.h>
 
@@ -16,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *eventTimeLabel;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) Event *event;
+
+- (void)generateCell:(Event *)event;
+
 
 @end
 
