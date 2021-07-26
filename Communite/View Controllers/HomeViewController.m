@@ -18,7 +18,6 @@
 
 @interface HomeViewController () <CLLocationManagerDelegate>
 
-@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
@@ -89,7 +88,6 @@
         HostEventViewController *hostEventViewController = (HostEventViewController*)navigationController.topViewController;
         hostEventViewController.delegate = self;
     }
-    
 }
 
 @end

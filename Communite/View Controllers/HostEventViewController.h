@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface HostEventViewController : UIViewController
 
 @property (weak, nonatomic) id<HostEventViewControllerDelegate> delegate;
+@property (weak, nonatomic) NSArray *venuesArray;
 
 @end
 

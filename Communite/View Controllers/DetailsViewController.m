@@ -28,7 +28,7 @@
     PFUser *user = self.event[@"creator"];
     self.hostedByLabel.text = user.username;
     self.eventDescriptionLabel.text = self.event[@"eventDescription"];
-    self.eventTitleLabel.text = self.event[@"eventTitle"];
+    self.eventTitleLabel.text = self.event[@"eventName"];
     self.totalAttendingLabel.text = self.event[@"rsvpCount"];
 //    [self.mapView set]
     

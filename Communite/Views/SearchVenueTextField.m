@@ -6,11 +6,16 @@
 //
 
 #import "SearchVenueTextField.h"
+#import "HostEventViewController.h"
 
 @implementation SearchVenueTextField 
 
 - (void)willMoveToSuperview:(UIView *)newSuperview{
     [super willMoveToSuperview: newSuperview];
+    
+    HostEventViewController *hostEventViewController;
+    
+    self.venuesArray = hostEventViewController.venuesArray;
     
     [self addTarget:self action:@selector(textFieldDidChange)  forControlEvents:UIControlEventEditingChanged];
     [self addTarget:self action:@selector(textFieldDidBeginEditing)  forControlEvents:UIControlEventEditingChanged];
@@ -43,7 +48,6 @@
 }
 
 - (void)filter{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cityName CONTAINS[cd] %@"];
     
 }
 
@@ -86,7 +90,6 @@
         if(self.isFirstResponder){
             [super bringSubviewToFront:self];
         }
-        
         [self.tableView reloadData];
     }
 }
