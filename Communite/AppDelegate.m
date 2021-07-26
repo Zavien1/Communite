@@ -7,22 +7,18 @@
 
 #import "AppDelegate.h"
 #import "Parse/Parse.h"
+#import <CoreLocation/CoreLocation.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-@import GooglePlaces;
-@import GoogleMaps;
-
 
 @interface AppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate 
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [GMSServices provideAPIKey:@"AIzaSyDmNafYiE72NM2SjNz0gtl5kZ2wgEcHbSg"];
-    [GMSPlacesClient provideAPIKey: @"AIzaSyDmNafYiE72NM2SjNz0gtl5kZ2wgEcHbSg"];
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
     
@@ -56,8 +52,6 @@
                                                  options:options];
   return YES;
 }
-    
-
 
 #pragma mark - UISceneSession lifecycle
 

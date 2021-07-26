@@ -5,6 +5,8 @@
 //  Created by Zavien Sibilia on 7/12/21.
 //
 
+#import "Event.h"
+#import "EventModalViewController.h"
 #import "HomeViewController.h"
 #import "HostEventViewController.h"
 #import "LoginViewController.h"
@@ -16,7 +18,7 @@
 #import <UIKit/UIKit.h>
 @import CoreLocation;
 
-@interface HomeViewController () <CLLocationManagerDelegate>
+@interface HomeViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
@@ -27,6 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.mapView.delegate = self;
+    
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
@@ -55,10 +59,13 @@
     }
 }
 
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
+    NSLog(@"hello you've tapped an annotation");
+    [self performSegueWithIdentifier:@"rsvpSegue" sender:view];
+}
 
 - (IBAction)didTapLogout:(id)sender {
     [[FBSDKLoginManager new] logOut];
-    
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         if(error != nil){
             NSLog(@"User log out failed: %@", error.localizedDescription);
@@ -87,6 +94,11 @@
         UINavigationController *navigationController = [segue destinationViewController];
         HostEventViewController *hostEventViewController = (HostEventViewController*)navigationController.topViewController;
         hostEventViewController.delegate = self;
+    }
+    if([segue.identifier isEqual:@"rsvpSegue"]){
+        Event *event = sender;
+        EventModalViewController *eventModalViewController = [segue destinationViewController];
+//        eventModalViewController.event = event;
     }
 }
 

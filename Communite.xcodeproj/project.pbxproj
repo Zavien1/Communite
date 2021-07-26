@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		131B488C26A762C600AA09AA /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 131B488B26A762C600AA09AA /* User.m */; };
 		131B488F26A762F500AA09AA /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 131B488E26A762F500AA09AA /* Event.m */; };
 		131B489526AA154E00AA09AA /* SearchVenueTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 131B489426AA154E00AA09AA /* SearchVenueTextField.m */; };
 		1366F35C26A0D1FB00D33CDE /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1366F35B26A0D1FB00D33CDE /* EventCell.m */; };
@@ -27,6 +26,9 @@
 		13B95019269DF50400E917E1 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B95018269DF50400E917E1 /* ProfileViewController.m */; };
 		13B9501C269DF59800E917E1 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B9501B269DF59800E917E1 /* SettingsViewController.m */; };
 		13B9501E269F75C800E917E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13B9501D269F75C800E917E1 /* GoogleService-Info.plist */; };
+		13F7F2C326AF489A0019CE19 /* EventModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F7F2C226AF489A0019CE19 /* EventModalViewController.m */; };
+		13F7F2C626AF50CC0019CE19 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F7F2C526AF50CC0019CE19 /* Venue.m */; };
+		13F7F2C926AF51040019CE19 /* EventMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F7F2C826AF51040019CE19 /* EventMarker.m */; };
 		2259C61C94CCF29818E38C84 /* Pods_Communite_CommuniteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A51018CEB892D953D57CEFC /* Pods_Communite_CommuniteUITests.framework */; };
 		598252EB21F6B9DC3EDC0652 /* Pods_Communite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EC616986132495E70E5716 /* Pods_Communite.framework */; };
 		6134A2D0ADB1C65D8582185A /* Pods_CommuniteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9852CD5002F3C4793CB156AC /* Pods_CommuniteTests.framework */; };
@@ -51,8 +53,6 @@
 
 /* Begin PBXFileReference section */
 		00EC616986132495E70E5716 /* Pods_Communite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Communite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		131B488A26A762C600AA09AA /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		131B488B26A762C600AA09AA /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		131B488D26A762F500AA09AA /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		131B488E26A762F500AA09AA /* Event.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		131B489326AA154E00AA09AA /* SearchVenueTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchVenueTextField.h; sourceTree = "<group>"; };
@@ -90,6 +90,12 @@
 		13B9501A269DF59800E917E1 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		13B9501B269DF59800E917E1 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		13B9501D269F75C800E917E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		13F7F2C126AF489A0019CE19 /* EventModalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventModalViewController.h; sourceTree = "<group>"; };
+		13F7F2C226AF489A0019CE19 /* EventModalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventModalViewController.m; sourceTree = "<group>"; };
+		13F7F2C426AF50CC0019CE19 /* Venue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
+		13F7F2C526AF50CC0019CE19 /* Venue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
+		13F7F2C726AF51040019CE19 /* EventMarker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventMarker.h; sourceTree = "<group>"; };
+		13F7F2C826AF51040019CE19 /* EventMarker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventMarker.m; sourceTree = "<group>"; };
 		2B05039DCC0F34BF6E574BEB /* Pods-Communite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Communite.debug.xcconfig"; path = "Target Support Files/Pods-Communite/Pods-Communite.debug.xcconfig"; sourceTree = "<group>"; };
 		3A3E9E379FACE89CF3AF2E28 /* Pods-CommuniteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommuniteTests.release.xcconfig"; path = "Target Support Files/Pods-CommuniteTests/Pods-CommuniteTests.release.xcconfig"; sourceTree = "<group>"; };
 		4534D8CD77D19DB0683B7A19 /* Pods-Communite-CommuniteUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Communite-CommuniteUITests.debug.xcconfig"; path = "Target Support Files/Pods-Communite-CommuniteUITests/Pods-Communite-CommuniteUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -131,10 +137,10 @@
 		1366F35926A0D08600D33CDE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				131B488A26A762C600AA09AA /* User.h */,
-				131B488B26A762C600AA09AA /* User.m */,
 				131B488D26A762F500AA09AA /* Event.h */,
 				131B488E26A762F500AA09AA /* Event.m */,
+				13F7F2C426AF50CC0019CE19 /* Venue.h */,
+				13F7F2C526AF50CC0019CE19 /* Venue.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -216,6 +222,8 @@
 				136A502F26A6396800672C51 /* HostEventViewController.m */,
 				136A503126A63BF600672C51 /* DetailsViewController.h */,
 				136A503226A63BF600672C51 /* DetailsViewController.m */,
+				13F7F2C126AF489A0019CE19 /* EventModalViewController.h */,
+				13F7F2C226AF489A0019CE19 /* EventModalViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -227,6 +235,8 @@
 				1366F35B26A0D1FB00D33CDE /* EventCell.m */,
 				131B489326AA154E00AA09AA /* SearchVenueTextField.h */,
 				131B489426AA154E00AA09AA /* SearchVenueTextField.m */,
+				13F7F2C726AF51040019CE19 /* EventMarker.h */,
+				13F7F2C826AF51040019CE19 /* EventMarker.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -533,12 +543,14 @@
 				13B95016269DF2D800E917E1 /* EventsViewController.m in Sources */,
 				136A503326A63BF600672C51 /* DetailsViewController.m in Sources */,
 				131B488F26A762F500AA09AA /* Event.m in Sources */,
+				13F7F2C626AF50CC0019CE19 /* Venue.m in Sources */,
 				13B94FD8269CEC9E00E917E1 /* AppDelegate.m in Sources */,
+				13F7F2C326AF489A0019CE19 /* EventModalViewController.m in Sources */,
 				13B9501C269DF59800E917E1 /* SettingsViewController.m in Sources */,
 				13B94FE9269CEC9E00E917E1 /* main.m in Sources */,
 				13B95019269DF50400E917E1 /* ProfileViewController.m in Sources */,
 				13B95013269CF73D00E917E1 /* HomeViewController.m in Sources */,
-				131B488C26A762C600AA09AA /* User.m in Sources */,
+				13F7F2C926AF51040019CE19 /* EventMarker.m in Sources */,
 				136A503026A6396800672C51 /* HostEventViewController.m in Sources */,
 				1366F35C26A0D1FB00D33CDE /* EventCell.m in Sources */,
 				13B94FDB269CEC9E00E917E1 /* SceneDelegate.m in Sources */,

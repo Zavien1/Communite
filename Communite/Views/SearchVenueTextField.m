@@ -16,6 +16,8 @@
     HostEventViewController *hostEventViewController;
     
     self.venuesArray = hostEventViewController.venuesArray;
+    NSLog(@"hello");
+    NSLog(@"%@", self.venuesArray);
     
     [self addTarget:self action:@selector(textFieldDidChange)  forControlEvents:UIControlEventEditingChanged];
     [self addTarget:self action:@selector(textFieldDidBeginEditing)  forControlEvents:UIControlEventEditingChanged];

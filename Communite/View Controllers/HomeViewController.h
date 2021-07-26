@@ -5,9 +5,8 @@
 //  Created by Zavien Sibilia on 7/12/21.
 //
 
+#import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
-#import <GoogleMaps/GoogleMaps.h>
-#import <GooglePlaces/GooglePlaces.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
