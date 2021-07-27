@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSArray *venuesArray;
+@property (strong, nonatomic) NSNumber *venueLat;
+@property (strong, nonatomic) NSNumber *venueLong;
 
 @end
 

@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *eventStartDatePicker;
 @property (weak, nonatomic) IBOutlet UIDatePicker *eventEndDatePicker;
 @property (weak, nonatomic) IBOutlet UIButton *createEventButton;
-@property (strong, nonatomic) PFGeoPoint *point;
 
 @end
 
@@ -33,6 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     
     // Do any additional setup after loading the view, typically from a nib.
     locationManager = [[CLLocationManager alloc] init];
@@ -82,7 +83,7 @@
         }
         else{
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            self.venuesArray = dataDictionary[@"response"];
+            self.searchTextField.venuesArray = dataDictionary[@"response"][@"venues"];
         }
     }];
     [task resume];
@@ -90,7 +91,7 @@
 
 - (IBAction)didTapCreate:(id)sender {
     
-    NSLog(@"This is the callback %@", self.point);
+    PFGeoPoint *geopoint = [PFGeoPoint geoPointWithLatitude:[self.searchTextField.venueLat doubleValue] longitude:[self.searchTextField.venueLong doubleValue]];
     
     Event *event = [PFObject objectWithClassName:@"Event"];
     event[@"creator"] = PFUser.currentUser;
@@ -98,7 +99,7 @@
     event[@"eventDescription"] = self.eventDescriptionTextField.text;
     event[@"eventStartDate"] = self.eventStartDatePicker.date;
     event[@"eventEndDate"] = self.eventEndDatePicker.date;
-    //    event[@"eventLocation"] = self.point;
+    event[@"eventLocation"] = geopoint;
     
     [event saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){
@@ -110,7 +111,6 @@
         }
     }];
 }
-
 - (IBAction)didTapCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

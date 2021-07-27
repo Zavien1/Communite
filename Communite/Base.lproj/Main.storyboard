@@ -199,14 +199,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="LKW-ji-x5f">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" style="plain" id="FfU-Pj-3sc">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Tw9-Ou-f41">
-                                <rect key="frame" x="20" y="7" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cancel"/>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="eZw-MQ-M72">
                             <connections>
-                                <action selector="didTapCancel:" destination="Mhc-f5-tgj" id="owL-Gn-Tlz"/>
+                                <action selector="didTapCancel:" destination="Mhc-f5-tgj" id="mTL-cC-JqZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

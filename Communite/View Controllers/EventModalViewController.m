@@ -27,7 +27,46 @@
 //    self.eventNameLabel.text = self.event[@"eventName"];
 }
 - (IBAction)didTapRSVP:(id)sender {
-    
+    PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
+    [eventQuery whereKey:@"objectId" equalTo:self.event.objectId];
+    [eventQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable events, NSError * _Nullable error) {
+        if(events != nil){
+            Event *queriedEvent = events[0];
+            NSMutableArray *usersWhoRSVP = queriedEvent[@"usersLiked"];
+            if([usersWhoRSVP containsObject:[PFUser currentUser].username]) {
+                NSNumber *numberOfLikes = queriedEvent[@"rsvpCount"];
+                NSNumber *newLikes = [NSNumber numberWithInt:([numberOfLikes intValue] - 1)];
+                queriedEvent[@"rsvpCount"] = newLikes;
+                
+                [usersWhoRSVP removeObject:[PFUser currentUser].username];
+                queriedEvent[@"rsvpCount"] = usersWhoRSVP;
+                
+//                [self.likeButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
+                
+            }
+            else{
+                NSNumber *numberOfRSVPs = queriedEvent[@"rsvpCount"];
+                NSNumber *newRSVPs = [NSNumber numberWithInt:([numberOfRSVPs intValue] + 1)];
+                queriedEvent[@"rsvpCount"] = newRSVPs;
+                
+                [usersWhoRSVP addObject:[PFUser currentUser].username];
+                queriedEvent[@"usersLiked"] = usersWhoRSVP;
+//                [self.likeButton setImage:[UIImage imageNamed:@"favor-icon-1"] forState:UIControlStateNormal];
+            }
+            
+            [queriedEvent saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if(error){
+                    NSLog(@"Failed to like post %@", error.localizedDescription);
+                }
+                else{
+//                    [self generateEvent:queriedEvent];
+                }
+            }];
+        }
+        else{
+            NSLog(@"error %@", error.localizedDescription);
+        }
+    }];
 }
 
 /*

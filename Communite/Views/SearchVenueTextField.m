@@ -5,19 +5,18 @@
 //  Created by Zavien Sibilia on 7/22/21.
 //
 
-#import "SearchVenueTextField.h"
 #import "HostEventViewController.h"
+#import "SearchVenueTextField.h"
 
-@implementation SearchVenueTextField 
+@implementation SearchVenueTextField
+
+- (void)willMoveToWindow:(UIWindow *)newWindow{
+    [super willMoveToWindow:newWindow];
+    [self.tableView removeFromSuperview];
+}
 
 - (void)willMoveToSuperview:(UIView *)newSuperview{
     [super willMoveToSuperview: newSuperview];
-    
-    HostEventViewController *hostEventViewController;
-    
-    self.venuesArray = hostEventViewController.venuesArray;
-    NSLog(@"hello");
-    NSLog(@"%@", self.venuesArray);
     
     [self addTarget:self action:@selector(textFieldDidChange)  forControlEvents:UIControlEventEditingChanged];
     [self addTarget:self action:@selector(textFieldDidBeginEditing)  forControlEvents:UIControlEventEditingChanged];
@@ -31,7 +30,6 @@
 }
 
 - (void)textFieldDidChange{
-    NSLog(@"text is changing");
     [self filter];
     [self updateSearchTable];
     self.tableView.isHidden;
@@ -54,9 +52,14 @@
 }
 
 - (void)buildSearchTable{
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.window addSubview:self.tableView];
+    if(self.tableView){
+        [self.tableView registerClass:UITableViewCell.self forCellReuseIdentifier:@"SearchTextFieldCell"];
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        [self.window addSubview:self.tableView];
+    } else{
+        self.tableView = [[UITableView alloc] init];
+    }
     
     [self updateSearchTable];
 }
@@ -101,22 +104,26 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    //TODO: return filtered results
     return self.venuesArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SearchTextFieldCell" forIndexPath:indexPath];
-    cell.backgroundColor = UIColor.clearColor;
-    cell.textLabel.attributedText = @"hello";
+    cell.backgroundColor = UIColor.whiteColor;
+    NSDictionary *venue = self.venuesArray[indexPath.row];
+    cell.textLabel.text = venue[@"name"];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.text = self.venuesArray[indexPath.row];
-    [self.tableView isHidden];
+    NSDictionary *venue = self.venuesArray[indexPath.row];
+    self.text = venue[@"name"];
+    self.venueLat = venue[@"location"][@"lat"];
+    self.venueLong = venue[@"location"][@"lng"];
+    NSLog(@"%@", self.venueLat);
+    [self.tableView setHidden:YES];
     [self endEditing:true];
 }
 

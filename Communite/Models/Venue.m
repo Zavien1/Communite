@@ -9,4 +9,10 @@
 
 @implementation Venue
 
+@dynamic venueName;
+@dynamic venueAddress;;
+@dynamic venueCategory;
+@dynamic venueLat;
+@dynamic venueLong;
+
 @end

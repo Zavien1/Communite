@@ -6,13 +6,17 @@
 //
 
 #import "Event.h"
+#import "Parse/Parse.h"
 #import <MapKit/MapKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface EventMarker : MKAnnotationView
+@interface EventMarker : MKPointAnnotation
 
-@property (weak, nonatomic) Event *event;
+@property (strong, nonatomic) Event *event;
+@property (strong, nonatomic) PFGeoPoint *geopoint;
+
+- (void)generateMarker:(Event *)event;
 
 @end
 

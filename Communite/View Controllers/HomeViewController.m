@@ -6,6 +6,7 @@
 //
 
 #import "Event.h"
+#import "EventMarker.h"
 #import "EventModalViewController.h"
 #import "HomeViewController.h"
 #import "HostEventViewController.h"
@@ -21,6 +22,7 @@
 @interface HomeViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) NSMutableArray *arrayOfEvents;
 
 @end
 
@@ -30,6 +32,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.mapView.delegate = self;
+    
+    NSLog(@"View loaded");
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -42,13 +46,40 @@
 
     [self.locationManager startUpdatingLocation];
     [self centerViewOnUserLocation];
+    [self fetchEvents];
+}
+
+- (void)fetchEvents{
+    // construct PFQuery
+    PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
+    [eventQuery orderByDescending:@"createdAt"];
+    [eventQuery includeKey:@"creator"];
+    [eventQuery includeKey:@"eventName"];
+    [eventQuery includeKey:@"eventDescription"];
+    [eventQuery includeKey:@"eventLocation"];
+    [eventQuery includeKey:@"eventStartDate"];
+    [eventQuery includeKey:@"eventEndDate"];
+    [eventQuery includeKey:@"rsvpCount"];
+    eventQuery.limit = 20;
     
-    CLLocationCoordinate2D coordinates = CLLocationCoordinate2DMake(37.785500, -122.421800);
-    
-    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-    [annotation setCoordinate:coordinates];
-    [annotation setTitle:@"Tommy's Joynt Party"]; //You can set the subtitle too
-    [self.mapView addAnnotation:annotation];
+    // fetch data asynchronously
+    [eventQuery findObjectsInBackgroundWithBlock:^(NSArray<Event *> * _Nullable events, NSError * _Nullable error){
+        if(events){
+            self.arrayOfEvents = events;
+            [self createEventMarker];
+        }
+        else{
+            NSLog(@"Error querying for data %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)createEventMarker{
+    for (id event in self.arrayOfEvents) {
+        EventMarker *annotation = [[EventMarker alloc] init];
+        [annotation generateMarker:event];
+        [self.mapView addAnnotation:annotation];
+    }
 }
 
 - (void)centerViewOnUserLocation{
@@ -60,8 +91,8 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
-    NSLog(@"hello you've tapped an annotation");
-    [self performSegueWithIdentifier:@"rsvpSegue" sender:view];
+    EventMarker *marker = view.annotation;
+    [self performSegueWithIdentifier:@"rsvpSegue" sender:marker];
 }
 
 - (IBAction)didTapLogout:(id)sender {
@@ -97,8 +128,9 @@
     }
     if([segue.identifier isEqual:@"rsvpSegue"]){
         Event *event = sender;
-        EventModalViewController *eventModalViewController = [segue destinationViewController];
-//        eventModalViewController.event = event;
+        UINavigationController *navigationController = [segue destinationViewController];
+        EventModalViewController *eventModalViewController = (EventModalViewController*)navigationController.topViewController;
+        eventModalViewController.event = event;
     }
 }
 
