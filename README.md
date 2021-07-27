@@ -29,7 +29,7 @@ Communite gives users a geomap interface to explore what their social circles ar
 **Required Must-have Stories**
 
 * Users should be able to login to their Facebook accounts
-* Users should be able to create events and pin them on the map, those pins should be visible to the users friends
+* Users should be able to create events and pin them on the map, those pins should be visible to other users
 * Users should be able to create events based on venues provided by venue search with typeahead
 * Users should be able to tap on those pins and RSVP for said events
 * Users should be able to determine who can view pins/events they create
@@ -46,7 +46,7 @@ Communite gives users a geomap interface to explore what their social circles ar
    * Users should learn about what the app does and how they can use it
 * Login/Register
    * Users can login to their Facebook account
-   * Users can create their own accounts and link their Facebook accounts.
+   * Users can create their own accounts.
 * Map View
    * Users can view events as pins around their city and see where their friends are
    * Users can view the location of their friends around town
