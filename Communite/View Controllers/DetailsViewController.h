@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DetailsViewController : UIViewController
 
 @property (strong, nonatomic) Event *event;
+@property (strong, nonatomic) PFGeoPoint *geopoint;
 
 @end
 

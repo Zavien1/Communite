@@ -43,13 +43,13 @@
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0){
         [self.locationManager requestWhenInUseAuthorization];
     }
-
+    
     [self.locationManager startUpdatingLocation];
     [self centerViewOnUserLocation];
     [self fetchEvents];
 }
 
-- (void)fetchEvents{
+- (void)fetchEvents {
     // construct PFQuery
     PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
     [eventQuery orderByDescending:@"createdAt"];
@@ -63,18 +63,22 @@
     eventQuery.limit = 20;
     
     // fetch data asynchronously
-    [eventQuery findObjectsInBackgroundWithBlock:^(NSArray<Event *> * _Nullable events, NSError * _Nullable error){
-        if(events){
+    [eventQuery findObjectsInBackgroundWithBlock:^(NSArray<Event *> * _Nullable events, NSError * _Nullable error) {
+        if (events) {
             self.arrayOfEvents = events;
             [self createEventMarker];
-        }
-        else{
+            [super viewDidAppear:TRUE];
+        } else {
             NSLog(@"Error querying for data %@", error.localizedDescription);
         }
     }];
 }
 
-- (void)createEventMarker{
+- (void)didPost {
+    [self fetchEvents];
+}
+
+- (void)createEventMarker {
     for (id event in self.arrayOfEvents) {
         EventMarker *annotation = [[EventMarker alloc] init];
         [annotation generateMarker:event];
@@ -82,8 +86,8 @@
     }
 }
 
-- (void)centerViewOnUserLocation{
-    if(self.locationManager.location){
+- (void)centerViewOnUserLocation {
+    if(self.locationManager.location) {
         CLLocationCoordinate2D location = self.locationManager.location.coordinate;
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 5000, 5000);
         [self.mapView setRegion:region];
@@ -92,7 +96,7 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
     EventMarker *marker = view.annotation;
-    [self performSegueWithIdentifier:@"rsvpSegue" sender:marker];
+    [self performSegueWithIdentifier:@"rsvpSegue" sender:marker.event];
 }
 
 - (IBAction)didTapLogout:(id)sender {

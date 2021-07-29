@@ -100,6 +100,7 @@
     event[@"eventStartDate"] = self.eventStartDatePicker.date;
     event[@"eventEndDate"] = self.eventEndDatePicker.date;
     event[@"eventLocation"] = geopoint;
+    event[@"eventAddress"] = self.searchTextField.venueAddress;
     
     [event saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){

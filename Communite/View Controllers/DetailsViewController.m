@@ -7,6 +7,7 @@
 
 #import "DetailsViewController.h"
 #import "MapKit/Mapkit.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface DetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *hostProfileImage;
@@ -25,13 +26,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    PFUser *user = self.event[@"creator"];
-    self.hostedByLabel.text = user.username;
+    PFUser *creator = self.event[@"creator"];
+    NSString *eventHost = creator.username;
+    NSString *hostedBy = [@"Hosted By: " stringByAppendingString:eventHost];
+    self.hostedByLabel.text = hostedBy;
+    PFFileObject *image = creator[@"userProfileImage"];
+    [self.hostProfileImage setImageWithURL:[NSURL URLWithString:image.url]];
     self.eventDescriptionLabel.text = self.event[@"eventDescription"];
     self.eventTitleLabel.text = self.event[@"eventName"];
-    self.totalAttendingLabel.text = self.event[@"rsvpCount"];
-//    [self.mapView set]
+    NSString *totalRSVP = [NSString stringWithFormat:@"%i", self.event[@"rsvpCount"]];
+    NSString *totalAttending = [totalRSVP stringByAppendingString:@" People Attending"];
+    self.totalAttendingLabel.text = totalAttending;
+    self.eventAddressLabel.text = self.event[@"eventAddress"];
     
+    //Show event on map
+    self.geopoint = self.event[@"eventLocation"];
+    CLLocationCoordinate2D mapCoordinates = CLLocationCoordinate2DMake(self.geopoint.latitude, self.geopoint.longitude);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mapCoordinates, 500, 500);
+    MKPointAnnotation *marker = [[MKPointAnnotation alloc] init];
+    marker.coordinate = mapCoordinates;
+    [self.mapView setCenterCoordinate:mapCoordinates];
+    [self.mapView setRegion:viewRegion animated:YES];
+    [self.mapView addAnnotation:marker];
+}
+
+- (IBAction)didTapCancelRSVP:(id)sender {
 }
 
 /*

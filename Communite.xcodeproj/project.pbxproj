@@ -29,6 +29,7 @@
 		13F7F2C326AF489A0019CE19 /* EventModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F7F2C226AF489A0019CE19 /* EventModalViewController.m */; };
 		13F7F2C626AF50CC0019CE19 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F7F2C526AF50CC0019CE19 /* Venue.m */; };
 		13F7F2CC26AF5DA60019CE19 /* EventMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F7F2CB26AF5DA60019CE19 /* EventMarker.m */; };
+		13F7F2CF26B0B90C0019CE19 /* Trie.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F7F2CE26B0B90C0019CE19 /* Trie.m */; };
 		2259C61C94CCF29818E38C84 /* Pods_Communite_CommuniteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A51018CEB892D953D57CEFC /* Pods_Communite_CommuniteUITests.framework */; };
 		598252EB21F6B9DC3EDC0652 /* Pods_Communite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EC616986132495E70E5716 /* Pods_Communite.framework */; };
 		6134A2D0ADB1C65D8582185A /* Pods_CommuniteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9852CD5002F3C4793CB156AC /* Pods_CommuniteTests.framework */; };
@@ -96,6 +97,8 @@
 		13F7F2C526AF50CC0019CE19 /* Venue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
 		13F7F2CA26AF5DA60019CE19 /* EventMarker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventMarker.h; sourceTree = "<group>"; };
 		13F7F2CB26AF5DA60019CE19 /* EventMarker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventMarker.m; sourceTree = "<group>"; };
+		13F7F2CD26B0B90C0019CE19 /* Trie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trie.h; sourceTree = "<group>"; };
+		13F7F2CE26B0B90C0019CE19 /* Trie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trie.m; sourceTree = "<group>"; };
 		2B05039DCC0F34BF6E574BEB /* Pods-Communite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Communite.debug.xcconfig"; path = "Target Support Files/Pods-Communite/Pods-Communite.debug.xcconfig"; sourceTree = "<group>"; };
 		3A3E9E379FACE89CF3AF2E28 /* Pods-CommuniteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommuniteTests.release.xcconfig"; path = "Target Support Files/Pods-CommuniteTests/Pods-CommuniteTests.release.xcconfig"; sourceTree = "<group>"; };
 		4534D8CD77D19DB0683B7A19 /* Pods-Communite-CommuniteUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Communite-CommuniteUITests.debug.xcconfig"; path = "Target Support Files/Pods-Communite-CommuniteUITests/Pods-Communite-CommuniteUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 				131B488E26A762F500AA09AA /* Event.m */,
 				13F7F2C426AF50CC0019CE19 /* Venue.h */,
 				13F7F2C526AF50CC0019CE19 /* Venue.m */,
+				13F7F2CD26B0B90C0019CE19 /* Trie.h */,
+				13F7F2CE26B0B90C0019CE19 /* Trie.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -276,7 +281,6 @@
 				13B94FD0269CEC9D00E917E1 /* Frameworks */,
 				13B94FD1269CEC9D00E917E1 /* Resources */,
 				796AC9E76E30C26493B16189 /* [CP] Embed Pods Frameworks */,
-				297D2587BB5144122B0F05DA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -315,7 +319,6 @@
 				13B94FF6269CEC9F00E917E1 /* Frameworks */,
 				13B94FF7269CEC9F00E917E1 /* Resources */,
 				BDF73EFECB9F4AEEC189E0E0 /* [CP] Embed Pods Frameworks */,
-				5DC3BB692DF0B97A237EE79C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -397,23 +400,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		297D2587BB5144122B0F05DA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Communite/Pods-Communite-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Communite/Pods-Communite-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Communite/Pods-Communite-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		51AE073DF537E1677F3523DA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -434,23 +420,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5DC3BB692DF0B97A237EE79C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Communite-CommuniteUITests/Pods-Communite-CommuniteUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Communite-CommuniteUITests/Pods-Communite-CommuniteUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Communite-CommuniteUITests/Pods-Communite-CommuniteUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		796AC9E76E30C26493B16189 /* [CP] Embed Pods Frameworks */ = {
@@ -542,6 +511,7 @@
 				131B489526AA154E00AA09AA /* SearchVenueTextField.m in Sources */,
 				13B95016269DF2D800E917E1 /* EventsViewController.m in Sources */,
 				136A503326A63BF600672C51 /* DetailsViewController.m in Sources */,
+				13F7F2CF26B0B90C0019CE19 /* Trie.m in Sources */,
 				131B488F26A762F500AA09AA /* Event.m in Sources */,
 				13F7F2C626AF50CC0019CE19 /* Venue.m in Sources */,
 				13B94FD8269CEC9E00E917E1 /* AppDelegate.m in Sources */,

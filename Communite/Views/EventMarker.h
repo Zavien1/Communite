@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) Event *event;
 @property (strong, nonatomic) PFGeoPoint *geopoint;
+@property (strong, nonatomic) NSString *eventName;
 
 - (void)generateMarker:(Event *)event;
 

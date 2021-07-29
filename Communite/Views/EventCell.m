@@ -25,6 +25,14 @@
     PFUser *creator = event[@"creator"];
     self.hostNameLabel.text = creator.username;
     self.eventTitleLabel.text = event[@"eventName"];
+    self.geopoint = event[@"eventLocation"];
+    CLLocationCoordinate2D mapCoordinates = CLLocationCoordinate2DMake(self.geopoint.latitude, self.geopoint.longitude);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mapCoordinates, 500, 500);
+    MKPointAnnotation *marker = [[MKPointAnnotation alloc] init];
+    marker.coordinate = mapCoordinates;
+    [self.mapView setCenterCoordinate:mapCoordinates];
+    [self.mapView setRegion:viewRegion animated:YES];
+    [self.mapView addAnnotation:marker];
 //    self.eventTimeLabel.text = event[@"eventStartDate"];
 //    self.addressLabel.text = event[@"eventLocation"];
 //

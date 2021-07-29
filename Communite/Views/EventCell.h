@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *eventTimeLabel;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) Event *event;
+@property (strong, nonatomic) PFGeoPoint *geopoint;
+
 
 - (void)generateCell:(Event *)event;
 

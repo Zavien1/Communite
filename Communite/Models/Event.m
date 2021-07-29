@@ -39,10 +39,21 @@
 }
 
 + (PFGeoPoint *)getPFGeoPoint:(CLLocation * _Nullable)location {
-    
     return [PFGeoPoint geoPointWithLatitude:11.2 longitude:12.2];
     
 }
+
+//- (void)initPostWithObject:(PFObject *)object {
+//    // Setting Post object given PFObject
+//    self.creator = object[@"user"];
+//    self.eventName = object[@"eventName"];
+//    self.likes = object[@"rsvpCount"];
+//    PFFileObject *image = object[@"image"];
+//    self.imageURL = image.url;
+//    self.usersWhoLiked = object[@"users_who_liked"];
+//    self.objectID = object.objectId;
+//    self.timeCreatedAt = object.createdAt;
+//}
 
 
 @end

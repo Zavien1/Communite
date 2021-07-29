@@ -36,7 +36,7 @@
 }
 
 - (void)textFieldDidBeginEditing{
-    
+    [self buildSearchTable];
 }
 
 - (void)textFieldDidEndEditing{
@@ -122,7 +122,7 @@
     self.text = venue[@"name"];
     self.venueLat = venue[@"location"][@"lat"];
     self.venueLong = venue[@"location"][@"lng"];
-    NSLog(@"%@", self.venueLat);
+    self.venueAddress = venue[@"location"][@"address"];
     [self.tableView setHidden:YES];
     [self endEditing:true];
 }

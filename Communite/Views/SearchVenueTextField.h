@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSArray *venuesArray;
 @property (strong, nonatomic) NSNumber *venueLat;
 @property (strong, nonatomic) NSNumber *venueLong;
+@property (strong, nonatomic) NSString *venueAddress;
 
 @end
 

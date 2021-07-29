@@ -9,8 +9,6 @@ target 'Communite' do
   pod 'Parse'
   pod 'AFNetworking'
   pod 'DateTools'
-  pod 'GoogleMaps', '5.1.0'
-  pod 'GooglePlaces'
   pod 'FBSDKLoginKit'
   
   target 'CommuniteTests' do

@@ -20,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *eventDescription;
 @property (nonatomic, strong) PFGeoPoint *eventLocation;
 @property (nonatomic, strong) NSNumber *rsvpCount;
+@property (nonatomic, strong) NSString *eventAddress;
+
+//- (void)initPostWithObject:(PFObject *)object;
+
 
 @end
 

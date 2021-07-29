@@ -14,6 +14,7 @@
     self.title = event[@"eventName"];
     self.geopoint = event[@"eventLocation"];
     self.coordinate = CLLocationCoordinate2DMake(self.geopoint.latitude, self.geopoint.longitude);
+    self.eventName = event[@"eventName"];
 }
 
 @end
