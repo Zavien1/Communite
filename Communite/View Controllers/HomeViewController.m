@@ -13,6 +13,7 @@
 #import "LoginViewController.h"
 #import "MapKit/MapKit.h"
 #import "Parse/Parse.h"
+#import "Trie.h"
 #import "SceneDelegate.h"
 #import <CoreLocation/CoreLocation.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
@@ -32,6 +33,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.mapView.delegate = self;
+    
+    Trie *t = [[Trie alloc] init];
+    [t formatString:@"T-Mobile"];
     
     NSLog(@"View loaded");
     

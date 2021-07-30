@@ -48,7 +48,15 @@
 }
 
 - (void)filter{
-    
+    int i;
+    self.wordsArray = [[NSMutableArray alloc] init];
+    for(i = 0; i < [self.venuesArray count]; i++){
+        NSDictionary *venue = self.venuesArray[i];
+        [self.wordsArray addObject:venue[@"name"]];
+    }
+    [self.trie makeTrie:self.wordsArray];
+    [self.trie searchPrefix:@"tmobile"];
+    [self.tableView reloadData];
 }
 
 - (void)buildSearchTable{
@@ -104,15 +112,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.venuesArray.count;
+    return self.wordsArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SearchTextFieldCell" forIndexPath:indexPath];
     cell.backgroundColor = UIColor.whiteColor;
-    NSDictionary *venue = self.venuesArray[indexPath.row];
-    cell.textLabel.text = venue[@"name"];
+//    NSDictionary *venue = self.wordsArray[indexPath.row];
+    cell.textLabel.text = self.wordsArray[indexPath.row];
     
     return cell;
 }

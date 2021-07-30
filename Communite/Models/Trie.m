@@ -7,19 +7,10 @@
 
 #import "Trie.h"
 
-@implementation Trie{
-}
+@implementation Trie
 
-- (void)initTrie{
-    self.word1 = @"hello";
-    self.word2 = @"goodbye";
-    self.word3 = @"morning";
-    self.word4 = @"afteroon";
-    self.word5 = @"goodnight";
-    self.word6 = @"good";
-    
-    
-    self.wordArray = [NSMutableArray arrayWithObjects:self.word1,self.word2,self.word3,self.word4,self.word5,self.word6, nil];
+- (NSMutableArray *)makeeTrie:(NSMutableArray *)array{
+    self.wordArray = array;
     self.suggestedWords = [[NSMutableArray alloc] init];
     self.charArray = [NSArray arrayWithObjects:@"a",@"b",@"c",@"d",@"e",@"f",@"g",@"h",@"i",@"j",@"k",@"l",@"m",@"n",@"o",@"p",@"q",@"r",@"s",@"t",@"u",@"v",@"w",@"x",@"y",@"z", nil];
     self.dict = [[NSMutableDictionary alloc] init];
@@ -32,6 +23,7 @@
     }
     int j;
     for(i = 0; i < [self.wordArray count]; i++){
+        [self formatString:self.wordArray[i]];
         unsigned int len = [self.wordArray[i] length];
         unichar buffer[len];
         [self.wordArray[i] getCharacters:buffer range:NSMakeRange(0, len)];
@@ -48,10 +40,13 @@
         }
         self.head[@"*"] = @"";
     }
+    array = self.head;
+    NSLog(@"%@", array);
+    return array;
 }
 
-- (void)searchPrefix{
-    NSString *searchTerm = @"good";
+- (void)searchPrefix:(NSString *)searchTerm{
+    NSMutableArray *newWordsArray = [[NSMutableArray alloc] init];
     NSString *accum = @"";
     int i;
     self.head = self.dict;
@@ -65,14 +60,12 @@
         accum = [accum stringByAppendingString:curr];
         if(self.head[curr]){
             self.head = self.head[curr];
-        } else{
-            //            return -1;
-        }
+        } 
     }
     NSLog(@"%@", self.head);
     [self suggestions:self.head :accum];
     
-    NSLog(@"%@", self.suggestedWords);
+    [newWordsArray addObject:self.suggestedWords];
 }
 
 - (void *)suggestions:(NSMutableDictionary *)dictionary :(NSString *)accum{
@@ -90,25 +83,15 @@
         newString = [newString stringByAppendingString:key];
         [self suggestions:self.head :newString];
     }
-//    for(i = 0; i < [keys count]; i++){
-//        if([key isEqualToString:@"*"]){
-//            self.suggestedWords = [self.suggestedWords arrayByAddingObject:accum];
-//        }
-//        else {
-//            dictionary = dictionary[key];
-//            NSLog(@"%@", key);
-//            accum = [accum stringByAppendingString:key];
-//            NSLog(@"%@", accum);
-//            if([dictionary isKindOfClass:[NSString class]] ){
-//                return 0;
-//            } else{
-//                [self suggestions:dictionary :accum];
-//                return 0;
-//
-//            }
-//        }
-//    }
     return 0;
 }
 
+- (NSString *)formatString:(NSString *)word {
+    NSCharacterSet *notAllowedChars = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"] invertedSet];
+    word = [[word componentsSeparatedByCharactersInSet:notAllowedChars] componentsJoinedByString:@""];
+    word = [word lowercaseString];
+    return word;
+}
+
 @end
+
