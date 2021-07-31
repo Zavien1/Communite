@@ -17,6 +17,8 @@
 
 - (void)willMoveToSuperview:(UIView *)newSuperview{
     [super willMoveToSuperview: newSuperview];
+    self.trie = [[Trie alloc] initTrie];
+
     
     [self addTarget:self action:@selector(textFieldDidChange)  forControlEvents:UIControlEventEditingChanged];
     [self addTarget:self action:@selector(textFieldDidBeginEditing)  forControlEvents:UIControlEventEditingChanged];
@@ -55,7 +57,7 @@
         [self.wordsArray addObject:venue[@"name"]];
     }
     [self.trie makeTrie:self.wordsArray];
-    [self.trie searchPrefix:@"tmobile"];
+    [self.trie searchPrefix:self.text];
     [self.tableView reloadData];
 }
 
@@ -112,7 +114,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.wordsArray.count;
+    if(self.trie.suggestedWords.count == 0){
+        return self.wordsArray.count;
+    } else {
+        return self.trie.suggestedWords.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -120,7 +126,12 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SearchTextFieldCell" forIndexPath:indexPath];
     cell.backgroundColor = UIColor.whiteColor;
 //    NSDictionary *venue = self.wordsArray[indexPath.row];
-    cell.textLabel.text = self.wordsArray[indexPath.row];
+    if(self.trie.suggestedWords.count == 0){
+        cell.textLabel.text = self.wordsArray[indexPath.row];
+    } else {
+        cell.textLabel.text = self.trie.suggestedWords[indexPath.row];
+    }
+    
     
     return cell;
 }

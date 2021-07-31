@@ -9,9 +9,19 @@
 
 @implementation Trie
 
-- (NSMutableArray *)makeeTrie:(NSMutableArray *)array{
-    self.wordArray = array;
+- (id) initTrie{
+    self = [super init];
+    self.dict = [[NSMutableDictionary alloc] init];
+    self.head = [[NSMutableDictionary alloc] init];
     self.suggestedWords = [[NSMutableArray alloc] init];
+    self.wordArray = [[NSMutableArray alloc] init];
+    self.charArray = [[NSArray alloc] init];
+
+    return self;
+}
+
+- (void)makeTrie:(NSMutableArray *)array{
+    self.wordArray = array;
     self.charArray = [NSArray arrayWithObjects:@"a",@"b",@"c",@"d",@"e",@"f",@"g",@"h",@"i",@"j",@"k",@"l",@"m",@"n",@"o",@"p",@"q",@"r",@"s",@"t",@"u",@"v",@"w",@"x",@"y",@"z", nil];
     self.dict = [[NSMutableDictionary alloc] init];
     //    self.dict[@""] = self.charArray;
@@ -38,15 +48,12 @@
                 self.head = self.head[curr];
             }
         }
-        self.head[@"*"] = @"";
+        self.head[@"*"] = self.wordArray[i];
     }
-    array = self.head;
-    NSLog(@"%@", array);
-    return array;
 }
 
 - (void)searchPrefix:(NSString *)searchTerm{
-    NSMutableArray *newWordsArray = [[NSMutableArray alloc] init];
+    self.suggestedWords = [[NSMutableArray alloc] init];
     NSString *accum = @"";
     int i;
     self.head = self.dict;
@@ -60,12 +67,10 @@
         accum = [accum stringByAppendingString:curr];
         if(self.head[curr]){
             self.head = self.head[curr];
-        } 
+        }
     }
     NSLog(@"%@", self.head);
     [self suggestions:self.head :accum];
-    
-    [newWordsArray addObject:self.suggestedWords];
 }
 
 - (void *)suggestions:(NSMutableDictionary *)dictionary :(NSString *)accum{
@@ -83,6 +88,7 @@
         newString = [newString stringByAppendingString:key];
         [self suggestions:self.head :newString];
     }
+    NSLog(@"%@", self.suggestedWords);
     return 0;
 }
 
@@ -94,4 +100,3 @@
 }
 
 @end
-

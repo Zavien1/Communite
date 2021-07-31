@@ -19,8 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSMutableDictionary *dict;
 @property (strong ,nonatomic) NSMutableDictionary *head;
 
-- (NSMutableArray *)makeTrie: (NSMutableArray *)wordArray;
-- (NSMutableArray *)searchPrefix: (NSString *)searchTerm;
+- (id)initTrie;
+- (void)makeTrie: (NSMutableArray *)wordArray;
+- (void)searchPrefix: (NSString *)searchTerm;
 - (NSString *)formatString: (NSString *)searchTerm;
 - (void *)suggestions: (NSMutableDictionary *)dictionary :(NSString *)accum;
 
