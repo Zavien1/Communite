@@ -43,17 +43,25 @@
     
 }
 
-//- (void)initPostWithObject:(PFObject *)object {
-//    // Setting Post object given PFObject
-//    self.creator = object[@"user"];
-//    self.eventName = object[@"eventName"];
-//    self.likes = object[@"rsvpCount"];
-//    PFFileObject *image = object[@"image"];
-//    self.imageURL = image.url;
-//    self.usersWhoLiked = object[@"users_who_liked"];
-//    self.objectID = object.objectId;
-//    self.timeCreatedAt = object.createdAt;
-//}
+- (void)initEventWithObject:(PFObject *)object {
+    // Setting Post object given PFObject
+    self.creator = object[@"user"];
+    self.eventName = object[@"eventName"];
+    self.rsvpCount = object[@"rsvpCount"];
+    self.objectID = object.objectId;
+    self.timeCreatedAt = object.createdAt;
+}
+
++ (NSMutableArray *)createEventArray:(NSArray *)objects {
+    // Returns array of Post objects given array of PFObjects
+    NSMutableArray *newEvents = [[NSMutableArray alloc] init];
+    for (PFObject *event in objects) {
+        Event *newEvent = [Event new];
+        [newEvent initEventWithObject:event];
+        [newEvents addObject:newEvent];
+    }
+    return newEvents;
+}
 
 
 @end

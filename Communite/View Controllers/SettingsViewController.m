@@ -6,6 +6,8 @@
 //
 
 #import "SettingsViewController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface SettingsViewController ()
 
@@ -16,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    loginButton.delegate = self;
 }
 
 /*

@@ -9,8 +9,7 @@
 #import "HomeViewController.h"
 #import "LoginViewController.h"
 #import "Parse/Parse.h"
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
+
 
 @interface LoginViewController ()
 
@@ -23,21 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-    loginButton.delegate = self;
 }
 
-- (void)loginButton:(FBSDKLoginButton *)loginButton
-didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
-              error:(NSError *)error {
-    if (error == nil) {
-        if ([FBSDKAccessToken currentAccessToken]) {
-            [self performSegueWithIdentifier:@"loginSegue" sender:self];
-        }
-    } else {
-        NSLog(@"%@", error.localizedDescription);
-    }
-}
 - (IBAction)didTapLogin:(id)sender {
     [self loginUser];
 }
@@ -85,13 +71,13 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

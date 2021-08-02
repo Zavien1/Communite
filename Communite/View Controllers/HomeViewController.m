@@ -23,7 +23,7 @@
 @interface HomeViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (strong, nonatomic) NSMutableArray *arrayOfEvents;
+@property (strong, nonatomic) NSMutableArray *events;
 
 @end
 
@@ -53,6 +53,10 @@
     [self fetchEvents];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [self fetchEvents];
+}
+
 - (void)fetchEvents {
     // construct PFQuery
     PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
@@ -69,7 +73,7 @@
     // fetch data asynchronously
     [eventQuery findObjectsInBackgroundWithBlock:^(NSArray<Event *> * _Nullable events, NSError * _Nullable error) {
         if (events) {
-            self.arrayOfEvents = events;
+            self.events = [Event createEventArray:events];
             [self createEventMarker];
             [super viewDidAppear:TRUE];
         } else {
@@ -83,7 +87,7 @@
 }
 
 - (void)createEventMarker {
-    for (id event in self.arrayOfEvents) {
+    for (id event in self.events) {
         EventMarker *annotation = [[EventMarker alloc] init];
         [annotation generateMarker:event];
         [self.mapView addAnnotation:annotation];
