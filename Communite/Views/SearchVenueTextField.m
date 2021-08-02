@@ -18,7 +18,6 @@
 - (void)willMoveToSuperview:(UIView *)newSuperview{
     [super willMoveToSuperview: newSuperview];
     self.trie = [[Trie alloc] initTrie];
-
     
     [self addTarget:self action:@selector(textFieldDidChange)  forControlEvents:UIControlEventEditingChanged];
     [self addTarget:self action:@selector(textFieldDidBeginEditing)  forControlEvents:UIControlEventEditingChanged];
@@ -96,10 +95,10 @@
         }];
         
         //Setting tableView style
-         self.tableView.layer.masksToBounds = true;
-         self.tableView.separatorInset = UIEdgeInsetsZero;
-         self.tableView.layer.cornerRadius = 5.0;
-         self.tableView.separatorColor = [UIColor lightGrayColor];
+        self.tableView.layer.masksToBounds = true;
+        self.tableView.separatorInset = UIEdgeInsetsZero;
+        self.tableView.layer.cornerRadius = 5.0;
+        self.tableView.separatorColor = [UIColor lightGrayColor];
         self.tableView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
         
         if(self.isFirstResponder){
@@ -125,7 +124,6 @@
     
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SearchTextFieldCell" forIndexPath:indexPath];
     cell.backgroundColor = UIColor.whiteColor;
-//    NSDictionary *venue = self.wordsArray[indexPath.row];
     if(self.trie.suggestedWords.count == 0){
         cell.textLabel.text = self.wordsArray[indexPath.row];
     } else {
@@ -147,11 +145,11 @@
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end
