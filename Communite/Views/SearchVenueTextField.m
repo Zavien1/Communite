@@ -125,15 +125,15 @@
     if (self.trie.suggestedWords.count == 0) {
         cell.textLabel.text = self.wordsArray[indexPath.row];
     } else {
-        cell.textLabel.text = self.trie.suggestedWords[indexPath.row];
-
+        NSString *formattedWord = self.trie.suggestedWords[indexPath.row];
+        cell.textLabel.text = [formattedWord substringToIndex:[formattedWord length] - 1];
     }
-    
-    
+
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Set correct index for venuesArray
     NSString *oldWord = self.trie.suggestedWords[indexPath.row];
     NSString *savedWord = [oldWord substringToIndex:[oldWord length] - 1];
     for (int i = 0; i < self.wordsArray.count; i++) {
@@ -141,6 +141,8 @@
            self.index = i;
         }
     }
+    
+    //Post venue data returned from JSON
     NSDictionary *venue = self.venuesArray[self.index];
     self.text = venue[@"name"];
     self.venueLat = venue[@"location"][@"lat"];
