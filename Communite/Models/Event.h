@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Event : PFObject
+@interface Event : PFObject<PFSubclassing>
 
 @property (nonatomic, strong) NSString *eventID;
 @property (nonatomic, strong) NSString *userID;

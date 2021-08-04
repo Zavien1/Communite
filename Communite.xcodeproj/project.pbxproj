@@ -25,7 +25,6 @@
 		13B95016269DF2D800E917E1 /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B95015269DF2D800E917E1 /* EventsViewController.m */; };
 		13B95019269DF50400E917E1 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B95018269DF50400E917E1 /* ProfileViewController.m */; };
 		13B9501C269DF59800E917E1 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B9501B269DF59800E917E1 /* SettingsViewController.m */; };
-		13B9501E269F75C800E917E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13B9501D269F75C800E917E1 /* GoogleService-Info.plist */; };
 		13F7F2C326AF489A0019CE19 /* EventModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F7F2C226AF489A0019CE19 /* EventModalViewController.m */; };
 		13F7F2C626AF50CC0019CE19 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F7F2C526AF50CC0019CE19 /* Venue.m */; };
 		13F7F2CC26AF5DA60019CE19 /* EventMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F7F2CB26AF5DA60019CE19 /* EventMarker.m */; };
@@ -91,7 +90,6 @@
 		13B95018269DF50400E917E1 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		13B9501A269DF59800E917E1 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		13B9501B269DF59800E917E1 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		13B9501D269F75C800E917E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13F7F2C126AF489A0019CE19 /* EventModalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventModalViewController.h; sourceTree = "<group>"; };
 		13F7F2C226AF489A0019CE19 /* EventModalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventModalViewController.m; sourceTree = "<group>"; };
 		13F7F2C426AF50CC0019CE19 /* Venue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
@@ -189,7 +187,6 @@
 				13B94FE2269CEC9E00E917E1 /* Assets.xcassets */,
 				13B94FE4269CEC9E00E917E1 /* LaunchScreen.storyboard */,
 				13B94FE7269CEC9E00E917E1 /* Info.plist */,
-				13B9501D269F75C800E917E1 /* GoogleService-Info.plist */,
 				13B94FE8269CEC9E00E917E1 /* main.m */,
 			);
 			path = Communite;
@@ -382,7 +379,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B94FE6269CEC9E00E917E1 /* LaunchScreen.storyboard in Resources */,
-				13B9501E269F75C800E917E1 /* GoogleService-Info.plist in Resources */,
 				13B94FE3269CEC9E00E917E1 /* Assets.xcassets in Resources */,
 				13B94FE1269CEC9E00E917E1 /* Main.storyboard in Resources */,
 			);

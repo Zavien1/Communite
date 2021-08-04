@@ -21,14 +21,14 @@
 
 @implementation EventsViewController
 
-- (void)viewDidLoad{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(loadPosts) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(fetchEvents) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
     [self fetchEvents];
@@ -40,9 +40,10 @@
 }
 
 
-- (void)fetchEvents{
+- (void)fetchEvents {
     // construct PFQuery
     PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
+    [eventQuery whereKey:@"usersAttending" containsString:[PFUser currentUser].username];
     [eventQuery orderByDescending:@"createdAt"];
     [eventQuery includeKey:@"creator"];
     [eventQuery includeKey:@"eventName"];
@@ -54,23 +55,22 @@
     eventQuery.limit = 20;
     
     // fetch data asynchronously
-    [eventQuery findObjectsInBackgroundWithBlock:^(NSArray<Event *> * _Nullable events, NSError * _Nullable error){
-        if(events){
-            self.events = [Event createEventArray:events];
+    [eventQuery findObjectsInBackgroundWithBlock:^(NSArray<Event *> * _Nullable events, NSError * _Nullable error) {
+        if (events) {
+            self.events = events;
             [self.tableView reloadData];
             [self.refreshControl endRefreshing];
-        }
-        else{
+        } else {
             NSLog(@"Error querying for data %@", error.localizedDescription);
         }
     }];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.events.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     EventCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"EventCell" forIndexPath:indexPath];
     Event *event = self.events[indexPath.row];
     [cell generateCell:event];

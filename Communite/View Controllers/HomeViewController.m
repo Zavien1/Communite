@@ -28,6 +28,8 @@
 @end
 
 @implementation HomeViewController
+const double zoomX = 5000;
+const double zoomY = 5000;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,7 +46,7 @@
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0){
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
         [self.locationManager requestWhenInUseAuthorization];
     }
     
@@ -53,7 +55,7 @@
     [self fetchEvents];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
+- (void)viewDidAppear:(BOOL)animated {
     [self fetchEvents];
 }
 
@@ -73,7 +75,7 @@
     // fetch data asynchronously
     [eventQuery findObjectsInBackgroundWithBlock:^(NSArray<Event *> * _Nullable events, NSError * _Nullable error) {
         if (events) {
-            self.events = [Event createEventArray:events];
+            self.events = events;
             [self createEventMarker];
             [super viewDidAppear:TRUE];
         } else {
@@ -95,32 +97,16 @@
 }
 
 - (void)centerViewOnUserLocation {
-    if(self.locationManager.location) {
+    if (self.locationManager.location) {
         CLLocationCoordinate2D location = self.locationManager.location.coordinate;
-        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 5000, 5000);
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, zoomX, zoomY);
         [self.mapView setRegion:region];
     }
 }
 
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     EventMarker *marker = view.annotation;
     [self performSegueWithIdentifier:@"rsvpSegue" sender:marker.event];
-}
-
-- (IBAction)didTapLogout:(id)sender {
-    [[FBSDKLoginManager new] logOut];
-    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        if(error != nil){
-            NSLog(@"User log out failed: %@", error.localizedDescription);
-        } else {
-            NSLog(@"successfully Logged out");
-        }
-    }];
-    
-    SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    sceneDelegate.window.rootViewController = loginViewController;
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -131,14 +117,13 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqual:@"composeView"]){
+    if ([segue.identifier isEqual:@"createEventSegue"]) {
         UINavigationController *navigationController = [segue destinationViewController];
         HostEventViewController *hostEventViewController = (HostEventViewController*)navigationController.topViewController;
         hostEventViewController.delegate = self;
     }
-    if([segue.identifier isEqual:@"rsvpSegue"]){
+    if ([segue.identifier isEqual:@"rsvpSegue"]) {
         Event *event = sender;
         UINavigationController *navigationController = [segue destinationViewController];
         EventModalViewController *eventModalViewController = (EventModalViewController*)navigationController.topViewController;

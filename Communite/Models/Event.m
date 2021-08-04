@@ -18,6 +18,9 @@
 @dynamic eventLocation;
 @dynamic rsvpCount;
 
+const double DEFAULT_LAT = 11.2;
+const double DEFAULT_LNG = 12.2;
+
 + (nonnull NSString *)parseClassName {
     return @"Event";
 }
@@ -26,7 +29,7 @@
       withDescription:(NSString * _Nullable)eventDescription
         withEventName:(NSString * _Nullable)eventName
              withDate:(NSDate * _Nullable)eventDate
-       withCompletion:(PFBooleanResultBlock  _Nullable)completion {
+       withCompletion:(PFBooleanResultBlock _Nullable)completion {
     
     Event *newEvent = [Event new];
     newEvent.creator = [PFUser currentUser];
@@ -39,8 +42,7 @@
 }
 
 + (PFGeoPoint *)getPFGeoPoint:(CLLocation * _Nullable)location {
-    return [PFGeoPoint geoPointWithLatitude:11.2 longitude:12.2];
-    
+    return [PFGeoPoint geoPointWithLatitude:DEFAULT_LAT longitude:DEFAULT_LNG];
 }
 
 - (void)initEventWithObject:(PFObject *)object {
@@ -50,17 +52,6 @@
     self.rsvpCount = object[@"rsvpCount"];
     self.objectID = object.objectId;
     self.timeCreatedAt = object.createdAt;
-}
-
-+ (NSMutableArray *)createEventArray:(NSArray *)objects {
-    // Returns array of Post objects given array of PFObjects
-    NSMutableArray *newEvents = [[NSMutableArray alloc] init];
-    for (PFObject *event in objects) {
-        Event *newEvent = [Event new];
-        [newEvent initEventWithObject:event];
-        [newEvents addObject:newEvent];
-    }
-    return newEvents;
 }
 
 

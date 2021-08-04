@@ -10,6 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 
 @interface DetailsViewController ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *hostProfileImage;
 @property (weak, nonatomic) IBOutlet UILabel *hostedByLabel;
 @property (weak, nonatomic) IBOutlet UILabel *eventTitleLabel;
@@ -23,6 +24,9 @@
 
 @implementation DetailsViewController
 
+const double ZOOM_X = 500;
+const double ZOOM_Y = 500;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -34,33 +38,69 @@
     [self.hostProfileImage setImageWithURL:[NSURL URLWithString:image.url]];
     self.eventDescriptionLabel.text = self.event[@"eventDescription"];
     self.eventTitleLabel.text = self.event[@"eventName"];
-    NSString *totalRSVP = [NSString stringWithFormat:@"%i", self.event[@"rsvpCount"]];
+    NSString *totalRSVP = [NSString stringWithFormat:@"%@", self.event[@"rsvpCount"]];
     NSString *totalAttending = [totalRSVP stringByAppendingString:@" People Attending"];
     self.totalAttendingLabel.text = totalAttending;
     self.eventAddressLabel.text = self.event[@"eventAddress"];
     
-    //Show event on map
+    // Show event on map.
     self.geopoint = self.event[@"eventLocation"];
     CLLocationCoordinate2D mapCoordinates = CLLocationCoordinate2DMake(self.geopoint.latitude, self.geopoint.longitude);
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mapCoordinates, 500, 500);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mapCoordinates, ZOOM_X, ZOOM_Y);
     MKPointAnnotation *marker = [[MKPointAnnotation alloc] init];
     marker.coordinate = mapCoordinates;
     [self.mapView setCenterCoordinate:mapCoordinates];
     [self.mapView setRegion:viewRegion animated:YES];
     [self.mapView addAnnotation:marker];
+    
+    if ([creator.username isEqual:[PFUser currentUser].username]) {
+        [self.eventRSVPButton setTitle:@"Cancel Event" forState:UIControlStateNormal];
+    } else {
+        [self.eventRSVPButton setTitle:@"Cancel Reservation" forState:UIControlStateNormal];
+    }
+    
+    
 }
 
 - (IBAction)didTapCancelRSVP:(id)sender {
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+    PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
+    [eventQuery includeKey:@"creator"];
+    [eventQuery whereKey:@"objectId" equalTo:self.event.objectId];
+    [eventQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable events, NSError * _Nullable error) {
+        if (events != nil) {
+            PFObject *receivedEvent = events[0];
+            PFUser *creator = receivedEvent[@"creator"];
+            if ([creator.username isEqual:[PFUser currentUser].username]) {
+                NSLog(@"hello");
+                [PFObject deleteAllInBackground:receivedEvent block:^(BOOL succeeded, NSError * _Nullable error) {
+                    if (succeeded) {
+                        NSLog(@"success");
+                    } else {
+                        NSLog(@"error deleting event %@", error.localizedDescription);
+                    }
+                }];
+            } else {
+//                Event *receivedEvent = events[0];
+//                NSMutableArray *usersWhoRSVP = receivedEvent[@"usersAttending"];
+//                NSNumber *numberOfRSVPs = receivedEvent[@"rsvpCount"];
+//                NSNumber *newRSVPs = [NSNumber numberWithInt:([numberOfRSVPs intValue] - 1)];
+//                receivedEvent[@"rsvpCount"] = newRSVPs;
+//
+//                [usersWhoRSVP removeObject:[PFUser currentUser].username];
+//                receivedEvent[@"usersAttending"] = usersWhoRSVP;
+//                [receivedEvent saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//                    if (error) {
+//                        NSLog(@"Failed to RSVP for event %@", error.localizedDescription);
+//                    } else {
+//                        [self dismissViewControllerAnimated:YES completion:nil];
+//                    }
+//                }];
+            }
+            
+        } else {
+            NSLog(@"error %@", error.localizedDescription);
+        }
+    }];
+};
 
 @end

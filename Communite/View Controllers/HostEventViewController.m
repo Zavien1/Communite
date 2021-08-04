@@ -11,7 +11,6 @@
 #import "Parse/Parse.h"
 #import "SearchVenueTextField.h"
 
-
 @interface HostEventViewController () <CLLocationManagerDelegate>
 
 @property (nonatomic) double userLat;
@@ -26,28 +25,24 @@
 
 @end
 
-@implementation HostEventViewController{
+@implementation HostEventViewController {
     CLLocationManager *locationManager;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    
+
     // Do any additional setup after loading the view, typically from a nib.
     locationManager = [[CLLocationManager alloc] init];
     
-    if([locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
-        //iOS 8.0 onwards
+    if ([locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+        // Authorization required iOS 8.0 onwards.
         [locationManager requestAlwaysAuthorization];
     }
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [locationManager startUpdatingLocation];
-
 }
-
 
 - (void)fetchPlaces {
     NSString *lat = [NSString stringWithFormat:@"%.20f", self.userLat];
@@ -61,27 +56,14 @@
     fullUrl = [fullUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSURL *url = [NSURL URLWithString:fullUrl];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url
+                                              cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                         timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Network Error" message:@"Failed to connect to the internet" preferredStyle:(UIAlertControllerStyleAlert)];
-            
-            // create an OK action
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction * _Nonnull action) {
-                // handle response here.
-            }];
-            // add the OK action to the alert controller
-            [alert addAction:okAction];
-            
-            [self presentViewController:alert animated:YES completion:^{
-                // optional codefor what happens after the alert controller has finished presenting
-            }];
-        }
-        else{
+        } else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             self.searchTextField.venuesArray = dataDictionary[@"response"][@"venues"];
         }
@@ -90,9 +72,9 @@
 }
 
 - (IBAction)didTapCreate:(id)sender {
-    
-    PFGeoPoint *geopoint = [PFGeoPoint geoPointWithLatitude:[self.searchTextField.venueLat doubleValue] longitude:[self.searchTextField.venueLong doubleValue]];
-    
+    PFGeoPoint *geopoint = [PFGeoPoint geoPointWithLatitude:[self.searchTextField.venueLat doubleValue]
+                                                  longitude:[self.searchTextField.venueLong doubleValue]];
+  
     Event *event = [PFObject objectWithClassName:@"Event"];
     event[@"creator"] = PFUser.currentUser;
     event[@"eventName"] = self.eventNameTextField.text;
@@ -103,31 +85,34 @@
     event[@"eventAddress"] = self.searchTextField.venueAddress;
     
     [event saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if(succeeded){
+        if (succeeded) {
             [self dismissViewControllerAnimated:YES completion:nil];
             [self.delegate didPost];
-        }
-        else{
+        } else {
             NSLog(@"Error posting event %@", error.localizedDescription);
         }
     }];
 }
+
 - (IBAction)didTapCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - CLLocationManagerDelegate
  
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-{
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError: %@", error);
-    UIAlertView *errorAlert = [[UIAlertView alloc]
-                                    initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:@"Failed to Get Your Location"
+                                                        delegate:nil
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles:nil];
     [errorAlert show];
 }
  
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation {
     CLLocation *currentLocation = newLocation;
     if (currentLocation != nil) {
         self.userLong = currentLocation.coordinate.longitude;
@@ -135,15 +120,5 @@
         [self fetchPlaces];
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

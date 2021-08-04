@@ -69,7 +69,6 @@
             self.head = self.head[curr];
         }
     }
-    NSLog(@"%@", self.head);
     [self suggestions:self.head :accum];
 }
 
