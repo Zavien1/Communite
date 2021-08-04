@@ -26,7 +26,6 @@
 		13B95019269DF50400E917E1 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B95018269DF50400E917E1 /* ProfileViewController.m */; };
 		13B9501C269DF59800E917E1 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B9501B269DF59800E917E1 /* SettingsViewController.m */; };
 		13F7F2C326AF489A0019CE19 /* EventModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F7F2C226AF489A0019CE19 /* EventModalViewController.m */; };
-		13F7F2C626AF50CC0019CE19 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F7F2C526AF50CC0019CE19 /* Venue.m */; };
 		13F7F2CC26AF5DA60019CE19 /* EventMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F7F2CB26AF5DA60019CE19 /* EventMarker.m */; };
 		13F7F2CF26B0B90C0019CE19 /* Trie.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F7F2CE26B0B90C0019CE19 /* Trie.m */; };
 		13F7F31926B879EF0019CE19 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F7F31826B879EF0019CE19 /* ProfileCell.m */; };
@@ -92,8 +91,6 @@
 		13B9501B269DF59800E917E1 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		13F7F2C126AF489A0019CE19 /* EventModalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventModalViewController.h; sourceTree = "<group>"; };
 		13F7F2C226AF489A0019CE19 /* EventModalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventModalViewController.m; sourceTree = "<group>"; };
-		13F7F2C426AF50CC0019CE19 /* Venue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
-		13F7F2C526AF50CC0019CE19 /* Venue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
 		13F7F2CA26AF5DA60019CE19 /* EventMarker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventMarker.h; sourceTree = "<group>"; };
 		13F7F2CB26AF5DA60019CE19 /* EventMarker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventMarker.m; sourceTree = "<group>"; };
 		13F7F2CD26B0B90C0019CE19 /* Trie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trie.h; sourceTree = "<group>"; };
@@ -143,8 +140,6 @@
 			children = (
 				131B488D26A762F500AA09AA /* Event.h */,
 				131B488E26A762F500AA09AA /* Event.m */,
-				13F7F2C426AF50CC0019CE19 /* Venue.h */,
-				13F7F2C526AF50CC0019CE19 /* Venue.m */,
 				13F7F2CD26B0B90C0019CE19 /* Trie.h */,
 				13F7F2CE26B0B90C0019CE19 /* Trie.m */,
 			);
@@ -515,7 +510,6 @@
 				136A503326A63BF600672C51 /* DetailsViewController.m in Sources */,
 				13F7F2CF26B0B90C0019CE19 /* Trie.m in Sources */,
 				131B488F26A762F500AA09AA /* Event.m in Sources */,
-				13F7F2C626AF50CC0019CE19 /* Venue.m in Sources */,
 				13B94FD8269CEC9E00E917E1 /* AppDelegate.m in Sources */,
 				13F7F2C326AF489A0019CE19 /* EventModalViewController.m in Sources */,
 				13B9501C269DF59800E917E1 /* SettingsViewController.m in Sources */,

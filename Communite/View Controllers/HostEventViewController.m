@@ -31,6 +31,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.eventDescriptionTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.eventDescriptionTextField.layer.borderWidth = 1;
+    self.eventDescriptionTextField.layer.cornerRadius = 10;
 
     // Do any additional setup after loading the view, typically from a nib.
     locationManager = [[CLLocationManager alloc] init];
@@ -77,6 +81,9 @@
   
     Event *event = [PFObject objectWithClassName:@"Event"];
     event[@"creator"] = PFUser.currentUser;
+    NSMutableArray *usersAttended = [[NSMutableArray alloc]init];
+    [usersAttended addObject:[PFUser currentUser].username];
+    event[@"usersAttending"] = usersAttended;
     event[@"eventName"] = self.eventNameTextField.text;
     event[@"eventDescription"] = self.eventDescriptionTextField.text;
     event[@"eventStartDate"] = self.eventStartDatePicker.date;

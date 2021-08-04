@@ -126,6 +126,7 @@
         cell.textLabel.text = self.wordsArray[indexPath.row];
     } else {
         cell.textLabel.text = self.trie.suggestedWords[indexPath.row];
+
     }
     
     
@@ -133,7 +134,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *venue = self.venuesArray[indexPath.row];
+    NSString *oldWord = self.trie.suggestedWords[indexPath.row];
+    NSString *savedWord = [oldWord substringToIndex:[oldWord length] - 1];
+    for (int i = 0; i < self.wordsArray.count; i++) {
+        if ([savedWord isEqualToString:self.wordsArray[i]]) {
+           self.index = i;
+        }
+    }
+    NSDictionary *venue = self.venuesArray[self.index];
     self.text = venue[@"name"];
     self.venueLat = venue[@"location"][@"lat"];
     self.venueLong = venue[@"location"][@"lng"];

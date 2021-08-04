@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SearchVenueTextField : UITextField <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableView;
+@property (nonatomic,assign) NSUInteger index;
 @property (strong, nonatomic) NSArray *venuesArray;
 @property (strong, nonatomic) NSMutableArray *wordsArray;
 @property (strong, nonatomic) NSNumber *venueLat;

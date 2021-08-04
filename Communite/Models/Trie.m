@@ -87,7 +87,6 @@
         newString = [newString stringByAppendingString:key];
         [self suggestions:self.head :newString];
     }
-    NSLog(@"%@", self.suggestedWords);
     return 0;
 }
 

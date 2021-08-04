@@ -72,9 +72,10 @@ const double ZOOM_Y = 500;
             PFUser *creator = receivedEvent[@"creator"];
             if ([creator.username isEqual:[PFUser currentUser].username]) {
                 NSLog(@"hello");
-                [PFObject deleteAllInBackground:receivedEvent block:^(BOOL succeeded, NSError * _Nullable error) {
+                [PFObject deleteAllInBackground:events block:^(BOOL succeeded, NSError * _Nullable error) {
                     if (succeeded) {
                         NSLog(@"success");
+                        [self dismissViewControllerAnimated:YES completion:nil];
                     } else {
                         NSLog(@"error deleting event %@", error.localizedDescription);
                     }

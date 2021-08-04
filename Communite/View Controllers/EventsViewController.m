@@ -31,6 +31,9 @@
     [self.refreshControl addTarget:self action:@selector(fetchEvents) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3
+        target:self selector:@selector(fetchEvents) userInfo:nil repeats:true];
+    
     [self fetchEvents];
 }
 

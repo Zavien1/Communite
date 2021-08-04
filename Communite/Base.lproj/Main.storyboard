@@ -223,7 +223,7 @@
             <objects>
                 <viewController id="CrX-bA-3hl" customClass="DetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Iqp-1y-Qt9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lh4-Lu-Lmc">
@@ -371,7 +371,7 @@
                                             <outlet property="eventTitleLabel" destination="Ekn-x5-GPe" id="Fa3-e5-HzP"/>
                                             <outlet property="hostNameLabel" destination="bxG-jS-VID" id="RWe-rB-22k"/>
                                             <outlet property="mapView" destination="SgL-DG-tF2" id="ngL-6i-wT0"/>
-                                            <segue destination="CrX-bA-3hl" kind="show" identifier="detailsView" id="S42-oR-e5f"/>
+                                            <segue destination="CrX-bA-3hl" kind="presentation" identifier="detailsView" id="S42-oR-e5f"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -480,7 +480,7 @@
                                         <connections>
                                             <outlet property="eventDateLabel" destination="gT8-hC-nQk" id="7ow-gi-Sav"/>
                                             <outlet property="eventNameLabel" destination="wjA-gl-eoY" id="EZo-9W-W3j"/>
-                                            <segue destination="CrX-bA-3hl" kind="show" id="Qqz-DL-9K0"/>
+                                            <segue destination="CrX-bA-3hl" kind="presentation" identifier="detailsView" id="Qqz-DL-9K0"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
