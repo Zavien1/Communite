@@ -29,7 +29,6 @@ const double ZOOM_Y = 500;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     PFUser *creator = self.event[@"creator"];
     NSString *eventHost = creator.username;
     NSString *hostedBy = [@"Hosted By: " stringByAppendingString:eventHost];
@@ -53,13 +52,13 @@ const double ZOOM_Y = 500;
     [self.mapView setRegion:viewRegion animated:YES];
     [self.mapView addAnnotation:marker];
     
+    //RSVP Button styling
+    self.eventRSVPButton.layer.cornerRadius = 6;
     if ([creator.username isEqual:[PFUser currentUser].username]) {
         [self.eventRSVPButton setTitle:@"Cancel Event" forState:UIControlStateNormal];
     } else {
         [self.eventRSVPButton setTitle:@"Cancel Reservation" forState:UIControlStateNormal];
     }
-    
-    
 }
 
 - (IBAction)didTapCancelRSVP:(id)sender {

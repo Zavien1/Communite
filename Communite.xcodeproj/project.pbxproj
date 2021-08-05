@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		131B488F26A762F500AA09AA /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 131B488E26A762F500AA09AA /* Event.m */; };
 		131B489526AA154E00AA09AA /* SearchVenueTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 131B489426AA154E00AA09AA /* SearchVenueTextField.m */; };
+		132FB3E426BB6A510088358F /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 132FB3E326BB6A510088358F /* SignupViewController.m */; };
 		1366F35C26A0D1FB00D33CDE /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1366F35B26A0D1FB00D33CDE /* EventCell.m */; };
 		136A503026A6396800672C51 /* HostEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136A502F26A6396800672C51 /* HostEventViewController.m */; };
 		136A503326A63BF600672C51 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136A503226A63BF600672C51 /* DetailsViewController.m */; };
@@ -57,6 +58,8 @@
 		131B488E26A762F500AA09AA /* Event.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		131B489326AA154E00AA09AA /* SearchVenueTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchVenueTextField.h; sourceTree = "<group>"; };
 		131B489426AA154E00AA09AA /* SearchVenueTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchVenueTextField.m; sourceTree = "<group>"; };
+		132FB3E226BB6A510088358F /* SignupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		132FB3E326BB6A510088358F /* SignupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		1366F35A26A0D1FB00D33CDE /* EventCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventCell.h; sourceTree = "<group>"; };
 		1366F35B26A0D1FB00D33CDE /* EventCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventCell.m; sourceTree = "<group>"; };
 		136A502E26A6396800672C51 /* HostEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HostEventViewController.h; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 				136A503226A63BF600672C51 /* DetailsViewController.m */,
 				13F7F2C126AF489A0019CE19 /* EventModalViewController.h */,
 				13F7F2C226AF489A0019CE19 /* EventModalViewController.m */,
+				132FB3E226BB6A510088358F /* SignupViewController.h */,
+				132FB3E326BB6A510088358F /* SignupViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -515,6 +520,7 @@
 				13B9501C269DF59800E917E1 /* SettingsViewController.m in Sources */,
 				13B94FE9269CEC9E00E917E1 /* main.m in Sources */,
 				13B95019269DF50400E917E1 /* ProfileViewController.m in Sources */,
+				132FB3E426BB6A510088358F /* SignupViewController.m in Sources */,
 				13B95013269CF73D00E917E1 /* HomeViewController.m in Sources */,
 				13F7F2CC26AF5DA60019CE19 /* EventMarker.m in Sources */,
 				136A503026A6396800672C51 /* HostEventViewController.m in Sources */,

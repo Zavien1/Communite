@@ -10,6 +10,7 @@ target 'Communite' do
   pod 'AFNetworking'
   pod 'DateTools'
   pod 'FBSDKLoginKit'
+  pod 'lottie-ios', '~> 2.5.3'
   
   target 'CommuniteTests' do
     inherit! :search_paths

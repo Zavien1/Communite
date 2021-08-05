@@ -13,6 +13,8 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface SettingsViewController ()
+@property (weak, nonatomic) IBOutlet FBSDKLoginButton *facebookButton;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 
 @end
 
@@ -21,8 +23,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.facebookButton.layer.cornerRadius = 6;
+    self.logoutButton.layer.cornerRadius = 6;
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
     loginButton.delegate = self;
+    
+}
+
+- (IBAction)didTapEnableDarkMode:(id)sender {
+    
 }
 
 - (IBAction)didTapLogout:(id)sender {

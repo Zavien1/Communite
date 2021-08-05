@@ -9,7 +9,7 @@
 #import "HomeViewController.h"
 #import "LoginViewController.h"
 #import "Parse/Parse.h"
-
+#import <Lottie/Lottie.h>
 
 @interface LoginViewController ()
 
@@ -29,27 +29,8 @@
 }
 
 - (IBAction)didTapSignup:(id)sender {
-    [self registerUser];
-}
-
-
-- (void)registerUser {
-    // initialize a user object
-    PFUser *newUser = [PFUser user];
+    [self performSegueWithIdentifier:@"signupSegue" sender:self];
     
-    // set user properties
-    newUser.username = self.userNameTextField.text;
-    newUser.password = self.passwordTextField.text;
-    
-    // call sign up function on the object
-    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-        if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"User registered successfully");
-            [self performSegueWithIdentifier:@"loginSegue" sender:self];
-        }
-    }];
 }
 
 - (void)loginUser {
@@ -62,10 +43,26 @@
         } else {
             NSLog(@"User logged in successfully");
             [self performSegueWithIdentifier:@"loginSegue" sender:self];
-            
-            // display view controller that needs to shown after successful login
         }
     }];
+}
+
+#pragma mark -- View Controller Transitioning
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    LOTAnimationTransitionController *animationController = [[LOTAnimationTransitionController alloc] initWithAnimationNamed:@"vcTransition1" fromLayerNamed:@"outLayer" toLayerNamed:@"inLayer" applyAnimationTransform:NO];
+    return animationController;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    LOTAnimationTransitionController *animationController = [[LOTAnimationTransitionController alloc] initWithAnimationNamed:@"vcTransition2" fromLayerNamed:@"outLayer" toLayerNamed:@"inLayer" applyAnimationTransform:NO];
+    return animationController;
+}
+
+- (void)_showTransitionA {
+    LoginViewController *vc = [[LoginViewController alloc] init];
+    vc.transitioningDelegate = self;
+    [self presentViewController:vc animated:YES completion:NULL];
 }
 
 @end

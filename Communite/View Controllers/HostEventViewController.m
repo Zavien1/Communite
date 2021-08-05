@@ -35,6 +35,7 @@
     self.eventDescriptionTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.eventDescriptionTextField.layer.borderWidth = 1;
     self.eventDescriptionTextField.layer.cornerRadius = 10;
+    self.eventDescriptionTextField.text = @"hello";
 
     // Do any additional setup after loading the view, typically from a nib.
     locationManager = [[CLLocationManager alloc] init];
@@ -61,7 +62,7 @@
     
     NSURL *url = [NSURL URLWithString:fullUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:url
-                                              cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                          timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -78,7 +79,7 @@
 - (IBAction)didTapCreate:(id)sender {
     PFGeoPoint *geopoint = [PFGeoPoint geoPointWithLatitude:[self.searchTextField.venueLat doubleValue]
                                                   longitude:[self.searchTextField.venueLong doubleValue]];
-  
+    
     Event *event = [PFObject objectWithClassName:@"Event"];
     event[@"creator"] = PFUser.currentUser;
     NSMutableArray *usersAttended = [[NSMutableArray alloc]init];
@@ -106,17 +107,17 @@
 }
 
 #pragma mark - CLLocationManagerDelegate
- 
+
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError: %@", error);
     UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                            message:@"Failed to Get Your Location"
+                                                         message:@"Failed to Get Your Location"
                                                         delegate:nil
                                                cancelButtonTitle:@"OK"
                                                otherButtonTitles:nil];
     [errorAlert show];
 }
- 
+
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation {
